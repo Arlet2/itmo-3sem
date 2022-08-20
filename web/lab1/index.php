@@ -1,6 +1,7 @@
 <html>
     <head>
         <title>Главная</title>
+        <script src="form_checker.js"></script>
     </head>
     <body>
         <div id="preview">
@@ -9,7 +10,7 @@
         </div>
         <div id="form">
             <p>*Картинка*
-            <form name="coords" method="POST">
+            <form name="coords" method="POST" onsubmit="return validate()">
                 <p>X:
                 <?php
                     $template = "<input type=\"radio\" name=\"x\" value=\"%d\">";
