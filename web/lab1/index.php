@@ -23,9 +23,9 @@
                     }
                 ?>
                 <p>Y:
-                <input type="text" name="y">
+                <input type="text" name="y" require>
                 <p>R:
-                <select name = "r">
+                <select name = "r" require>
                     <?php
                         $template = "<option>%d</option>";
 
@@ -36,7 +36,7 @@
                             printf($template, $i);
                     ?>
                 </select>
-                <input type="submit">
+                <input type="submit" value="Отправить">
             </form>
         </div>
     </body>
