@@ -9,7 +9,7 @@
         </div>
         <div id="form">
             <p>*Картинка*
-            <form name="coords" method="POST" action="point_checker.php">
+            <form name="coords" method="POST">
                 <p>X:
                 <?php
                     $template = "<input type=\"radio\" name=\"x\" value=\"%d\">";
