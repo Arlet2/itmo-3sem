@@ -25,7 +25,7 @@
                 <p>Y:
                 <input type="text" name="y">
                 <p>R:
-                <select>
+                <select name = "r">
                     <?php
                         $template = "<option>%d</option>";
 
