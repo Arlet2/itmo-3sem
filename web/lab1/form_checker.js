@@ -7,27 +7,34 @@ function validate() {
 
     console.log(x+" "+Number(y)+" "+r);
 
-    if (x == "") {
-        alert("Выберите значение координаты x из предложенных")
+    return checkXCoordinate(x) && checkYCoordinate(y);
+}
+
+function checkXCoordinate(coordinateX) {
+    if (coordinateX == "") {
+        alert("Выберите значение координаты x из предложенных");
         return false;
     }
+    return true;
+}
 
-    if (calculateDigitsAfterPoint(y) >= 16) {
+function checkYCoordinate(coordinateY) {
+    if (calculateDigitsAfterPoint(coordinateY) >= 16) {
         alert("Введите координату y с меньшей точностью (до 15 знаков после запятой)");
         return false;
     }
 
-    if (y == "") {
+    if (coordinateY == "") {
         alert("Поле координаты y является обязательным");
         return false;
     }
     
-    if (!isNumeric(y)) {
+    if (!isNumeric(coordinateY)) {
         alert("Координата y должна быть числом");
         return false;
     }
 
-    if (y > 5 || y < -5) {
+    if (coordinateY > 5 || coordinateY < -5) {
         alert("Координата y должна быть от -5 до 5");
         return false;
     }
@@ -35,10 +42,10 @@ function validate() {
     return true;
 }
 
-function isNumeric(string) {
-   return !isNaN(string); 
-}
-
 function calculateDigitsAfterPoint(number) {
     return number.match(/(?<=\.)\d*/)[0].length;
+}
+
+function isNumeric(string) {
+   return !isNaN(string); 
 }
