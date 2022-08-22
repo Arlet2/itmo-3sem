@@ -5,14 +5,24 @@ function validate() {
 
     //todo: добавить изменение , при передаче на сервер
 
-    console.log(x+" "+y+" "+r);
+    console.log(x+" "+Number(y)+" "+r);
 
     if (x == "") {
         alert("Выберите значение координаты x из предложенных")
         return false;
     }
+
+    if (calculateDigitsAfterPoint(y) >= 16) {
+        alert("Введите координату y с меньшей точностью (до 15 знаков после запятой)");
+        return false;
+    }
+
+    if (y == "") {
+        alert("Поле координаты y является обязательным");
+        return false;
+    }
     
-    if (!isNumeric(y) || y == "") {
+    if (!isNumeric(y)) {
         alert("Координата y должна быть числом");
         return false;
     }
@@ -27,4 +37,8 @@ function validate() {
 
 function isNumeric(string) {
    return !isNaN(string); 
+}
+
+function calculateDigitsAfterPoint(number) {
+    return number.match(/(?<=\.)\d*/)[0].length;
 }
