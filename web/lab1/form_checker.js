@@ -4,9 +4,6 @@ function validate() {
     let r = document.forms["coords"]["r"].value;
 
     //todo: добавить изменение , при передаче на сервер
-    //todo: попробовать сломать с плавающей точкой/пробелами
-    
-    //todo: валится на пробелах!!!
 
     console.log(x+" "+y+" "+r);
 
