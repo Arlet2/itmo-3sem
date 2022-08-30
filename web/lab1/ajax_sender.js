@@ -1,5 +1,9 @@
 function sendRequest (method, url) {
-    if (!validate()) {
+    let x = document.forms["coords"]["x"].value;
+    let y = document.forms["coords"]["y"].value.replace(',','.').replace(' ',"");
+    let r = document.forms["coords"]["r"].value;
+
+    if (!validate(x, y, r)) {
         return;
     }
     let httpRequest = createRequest();
@@ -24,12 +28,14 @@ function sendRequest (method, url) {
         }
     }
 
+    let args = createArgs(x, y, r);
+
     if (method.toLowerCase() == "post") {
-        sendByPost (httpRequest, url, createArgsString());
+        sendByPost (httpRequest, url, args);
     }
 
     else if (method.toLowerCase() == "get") {
-        sendByGet (httpRequest, url, createArgsString());
+        sendByGet (httpRequest, url, args);
     }
 
     else {
@@ -66,11 +72,7 @@ function handleRequest (httpRequest) {
     alert(httpRequest.responseText); // поменять на изменение таблицы
 }
 
-function createArgsString () {
-    let x = document.forms["coords"]["x"].value;
-    let y = document.forms["coords"]["y"].value.replace(',','.').replace(' ',"");
-    let r = document.forms["coords"]["r"].value;
-
+function createArgs (x, y, r) {
     return "x="+x+"&y="+y+"&r="+r;
 }
 
