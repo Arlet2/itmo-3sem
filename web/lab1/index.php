@@ -27,13 +27,4 @@
             </form>
         </div>
     </body>
-    <?php
-    echo "<p>DATA:";
-    if (isset($_POST["x"]))
-        echo "<p>x: " . $_POST["x"];
-    if (isset($_POST["y"]))
-        echo "<p>y: " . $_POST["y"];
-    if (isset($_POST["r"]))
-        echo "<p>r: " . $_POST["r"];
-    ?>
 </html>
