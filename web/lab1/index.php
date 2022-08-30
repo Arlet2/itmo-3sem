@@ -2,6 +2,7 @@
     <head>
         <title>Главная</title>
         <script src="form_checker.js"></script>
+        <script src="ajax_sender.js"></script>
         <?php
             require "generators.php";
         ?>
@@ -13,7 +14,7 @@
         </div>
         <div id="form">
             <p>*Картинка*
-            <form name="coords" method="POST" onsubmit="return validate()">
+            <form name="coords">
                 <p>X:
                 <?php generate_radio_buttons(-5, 3); ?>
                 <p>Y:
@@ -22,7 +23,7 @@
                 <select name = "r" require>
                     <?php generate_options(1, 5); ?>
                 </select>
-                <input type="submit" value="Отправить">
+                <input type="button" value="Отправить" onclick="sendRequest('POST', 'point_handler.php');">
             </form>
         </div>
     </body>
