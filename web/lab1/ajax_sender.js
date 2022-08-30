@@ -8,12 +8,15 @@ function sendRequest (method, url) {
         return;
     }
 
-    // todo проверка падения сервера
-
     httpRequest.onreadystatechange = function() {
         try {
             if (httpRequest.readyState == 4) {
-                handleRequest(httpRequest);
+                if (httpRequest.status == 200) {
+                    handleRequest(httpRequest);
+                }
+                else {
+                    alert("Ошибка отправки на сервер: "+httpRequest.status);
+                }
             }
         } catch (e) {
             alert("Нет соединения с сервером");
