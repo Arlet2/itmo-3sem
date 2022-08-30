@@ -15,7 +15,8 @@ function sendRequest (method, url) {
                     handleRequest(httpRequest);
                 }
                 else {
-                    alert("Ошибка отправки на сервер: "+httpRequest.status);
+                    console.print("ERROR: "+httpRequest.status);
+                    alert("Нет соединения с сервером");
                 }
             }
         } catch (e) {
