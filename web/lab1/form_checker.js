@@ -1,9 +1,5 @@
-function validate() {
-    let x = document.forms["coords"]["x"].value;
-    let y = document.forms["coords"]["y"].value.replace(',','.').replace(' ',"");
-    let r = document.forms["coords"]["r"].value;
-
-    console.log(x+" "+Number(y)+" "+r);
+function validate(x, y, r) {
+    console.log("X: "+x+" Y: "+Number(y)+" R: "+r);
 
     return checkXCoordinate(x) && checkYCoordinate(y);
 }
