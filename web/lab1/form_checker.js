@@ -3,8 +3,6 @@ function validate() {
     let y = document.forms["coords"]["y"].value.replace(',','.').replace(' ',"");
     let r = document.forms["coords"]["r"].value;
 
-    //todo: добавить изменение , при передаче на сервер
-
     console.log(x+" "+Number(y)+" "+r);
 
     return checkXCoordinate(x) && checkYCoordinate(y);
@@ -43,7 +41,11 @@ function checkYCoordinate(coordinateY) {
 }
 
 function calculateDigitsAfterPoint(number) {
-    return number.match(/(?<=\.)\d*/)[0].length;
+    let digits = number.match(/(?<=\.)\d*/);
+    if (digits === null) {
+        return 0; // изменить проверку на null!
+    }
+    return digits[0].length;
 }
 
 function isNumeric(string) {
