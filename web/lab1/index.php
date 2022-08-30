@@ -2,6 +2,9 @@
     <head>
         <title>Главная</title>
         <script src="form_checker.js"></script>
+        <?php
+            require "generators.php";
+        ?>
     </head>
     <body>
         <div id="preview">
@@ -12,30 +15,12 @@
             <p>*Картинка*
             <form name="coords" method="POST" onsubmit="return validate()">
                 <p>X:
-                <?php
-                    $template = "<input type=\"radio\" name=\"x\" value=\"%d\">";
-
-                    $min_value = -5;
-                    $max_value = 3;
-
-                    for($i=$min_value;$i<$max_value+1;$i++) {
-                        echo "$i:";
-                        printf($template, $i);
-                    }
-                ?>
+                <?php generate_radio_buttons(-5, 3); ?>
                 <p>Y:
                 <input type="text" name="y" require>
                 <p>R:
                 <select name = "r" require>
-                    <?php
-                        $template = "<option>%d</option>";
-
-                        $min_value = 1;
-                        $max_value = 5;
-
-                        for($i = $min_value; $i<$max_value+1;$i++)
-                            printf($template, $i);
-                    ?>
+                    <?php generate_options(1, 5); ?>
                 </select>
                 <input type="submit" value="Отправить">
             </form>
