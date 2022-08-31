@@ -18,7 +18,7 @@
                 <p>X:
                 <?php generate_radio_buttons(-5, 3); ?>
                 <p>Y:
-                <input type="text" name="y" require>
+                <input type="text" name="y" require placeholder="-5..5">
                 <p>R:
                 <select name = "r" require>
                     <?php generate_options(1, 5); ?>
