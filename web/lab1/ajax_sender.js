@@ -11,6 +11,11 @@ function sendRequest (method, url, args, handlingFunction) {
                 if (httpRequest.status == 200) {
                     handlingFunction(httpRequest);
                 }
+
+                else if (httpRequest.status == 0) {
+                    alert("Нет соединения с сервером");
+                }
+
                 else {
                     console.print("ERROR: "+httpRequest.status);
                     alert("Нет соединения с сервером");
