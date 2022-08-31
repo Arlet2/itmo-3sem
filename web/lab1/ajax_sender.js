@@ -1,11 +1,4 @@
-function sendRequest (method, url) {
-    let x = document.forms["coords"]["x"].value;
-    let y = document.forms["coords"]["y"].value.replace(',','.').replace(' ',"");
-    let r = document.forms["coords"]["r"].value;
-
-    if (!validate(x, y, r)) {
-        return;
-    }
+function sendRequest (method, url, args, handlingFunction) {
     let httpRequest = createRequest();
 
     if (!httpRequest) {
@@ -16,7 +9,7 @@ function sendRequest (method, url) {
         try {
             if (httpRequest.readyState == 4) {
                 if (httpRequest.status == 200) {
-                    handleRequest(httpRequest);
+                    handlingFunction(httpRequest);
                 }
                 else {
                     console.print("ERROR: "+httpRequest.status);
@@ -27,8 +20,6 @@ function sendRequest (method, url) {
             alert("Нет соединения с сервером");
         }
     }
-
-    let args = createArgs(x, y, r);
 
     if (method.toLowerCase() == "post") {
         sendByPost (httpRequest, url, args);
@@ -66,14 +57,6 @@ function createRequest () {
     }
 
     return request;
-}
-
-function handleRequest (httpRequest) {
-    alert(httpRequest.responseText); // поменять на изменение таблицы
-}
-
-function createArgs (x, y, r) {
-    return "x="+x+"&y="+y+"&r="+r;
 }
 
 function sendByPost (httpRequest, url, args) {
