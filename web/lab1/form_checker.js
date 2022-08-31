@@ -37,11 +37,11 @@ function checkYCoordinate(coordinateY) {
 }
 
 function calculateDigitsAfterPoint(number) {
-    let digits = number.match(/(?<=\.)\d*/);
-    if (digits === null || digits === undefined) {
+    let digitsAfterPoint = number.match(/(?<=\.)\d*/);
+    if (digitsAfterPoint === null || digitsAfterPoint === undefined) {
         return 0;
     }
-    return digits[0].length;
+    return digitsAfterPoint[0].length;
 }
 
 function isNumeric(string) {
