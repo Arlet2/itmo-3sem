@@ -38,8 +38,8 @@ function checkYCoordinate(coordinateY) {
 
 function calculateDigitsAfterPoint(number) {
     let digits = number.match(/(?<=\.)\d*/);
-    if (digits === null) {
-        return 0; // изменить проверку на null!
+    if (digits === null || digits === undefined) {
+        return 0;
     }
     return digits[0].length;
 }
