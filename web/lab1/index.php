@@ -1,6 +1,7 @@
 <html>
     <head>
         <title>Главная</title>
+        <script src="coords_sender.js"></script>
         <script src="form_checker.js"></script>
         <script src="ajax_sender.js"></script>
         <?php
@@ -23,7 +24,7 @@
                 <select name = "r" require>
                     <?php generate_options(1, 5); ?>
                 </select>
-                <input type="button" value="Отправить" onclick="sendRequest('POST', 'point_handler.php');">
+                <input type="button" value="Отправить" onclick="sendCoordinates();">
             </form>
         </div>
     </body>
