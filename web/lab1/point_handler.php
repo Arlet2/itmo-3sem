@@ -1,6 +1,6 @@
 <?php
 
-$startTime = microtime(true);
+$startTime = hrtime(true);
 
 require "hit_checker.php";
 
@@ -16,6 +16,6 @@ if (isHit($x, $y, $r)) {
     echo "Не попал";
 }
 
-$interval = round((microtime(true) - $startTime)*1000, 3) . " ms";
+$interval = round((hrtime(true) - $startTime)/(10**6), 3) . " ms";
 
 echo " | " . $interval;
