@@ -1,11 +1,11 @@
 <html>
     <head>
         <title>Главная</title>
-        <script src="coords_sender.js"></script>
-        <script src="form_checker.js"></script>
-        <script src="ajax_sender.js"></script>
+        <script src="js/coords-sender.js"></script>
+        <script src="js/form-checker.js"></script>
+        <script src="js/ajax-sender.js"></script>
         <?php
-            require "generators.php";
+            require "php/generators.php";
         ?>
     </head>
     <body>

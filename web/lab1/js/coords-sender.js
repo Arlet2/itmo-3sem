@@ -7,7 +7,7 @@ function sendCoordinates () {
         return;
     }
 
-    sendRequest("POST", "point_handler.php", createArgs(x, y, r), handleRequest);
+    sendRequest("POST", "php/point-handler.php", createArgs(x, y, r), handleRequest);
 }
 
 function createArgs (x, y, r) {
