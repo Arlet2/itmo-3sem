@@ -2,20 +2,26 @@
 
 $startTime = hrtime(true);
 
+require "utils.php";
 require "hit_checker.php";
+require "data_validator.php";
 
-$x = $_POST["x"];
-$y = $_POST["y"];
-$r = $_POST["r"];
+$x = preprocessValue($_POST["x"]);
+$y = preprocessValue($_POST["y"]);
+$r = preprocessValue($_POST["r"]);
 
-echo $startTime . " | " . $x . " | " . $y . " | " . $r . " | ";
+$dataIsCorrect = isArgumentsAreNumbers($x, $y, $r) && checkX($x) && checkY($y) && checkR($r);
 
-if (isHit($x, $y, $r)) {
+echo date(DATE_ATOM, time()) . " | " . changeCommaToPoint($x) . " | " . changeCommaToPoint($y) . " | " . changeCommaToPoint($r) . " | ";
+
+if (!$dataIsCorrect) {
+    echo "Ошибка ввода данных";
+} else if (isHit($x, $y, $r)) {
     echo "Попал";
 } else {
     echo "Не попал";
 }
 
-$interval = round((hrtime(true) - $startTime)/(10**6), 3) . " ms";
+$interval = changePointToComma(round((hrtime(true) - $startTime) / (10 ** 6), 3)) . " ms";
 
 echo " | " . $interval;
