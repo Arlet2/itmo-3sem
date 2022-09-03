@@ -11,7 +11,7 @@ function sendCoordinates () {
 }
 
 function createArgs (x, y, r) {
-    return "x="+x+"&y="+y+"n&r="+r;
+    return "x="+x+"&y="+y+"&r="+r;
 }
 
 function handleRequest (httpRequest) {
