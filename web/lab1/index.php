@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Главная</title>
+        <title>Лабораторная работа №1</title>
         <script src="js/coords-sender.js"></script>
         <script src="js/form-checker.js"></script>
         <script src="js/ajax-sender.js"></script>
