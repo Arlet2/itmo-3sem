@@ -21,7 +21,7 @@ function checkAxes($x, $y, $r)
 
 function isFirstQuarter($x, $y, $r)
 {
-    return pow($x, 2) + pow($y, 2) <= pow($r, 2);
+    return $x ** 2 + $y ** 2 <= $r ** 2;
 }
 
 function isSecondQuarter($x, $y, $r)
