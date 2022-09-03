@@ -1,5 +1,5 @@
 <?php
-function isHit($x, $y, $r)
+function isHit(int $x, int $y, int $r) : bool
 {
     if ($x == 0 || $y == 0) {
         return checkAxes($x, $y, $r);
@@ -14,27 +14,27 @@ function isHit($x, $y, $r)
     }
 }
 
-function checkAxes($x, $y, $r)
+function checkAxes(int $x, int $y, int $r) : bool
 {
     return $x <= $r && $x >= -$r && $y <= $r && $y >= -$r;
 }
 
-function isFirstQuarter($x, $y, $r)
+function isFirstQuarter(int $x, int $y, int $r) : bool
 {
     return $x ** 2 + $y ** 2 <= $r ** 2;
 }
 
-function isSecondQuarter($x, $y, $r)
+function isSecondQuarter(int $x, int $y, int $r) : bool
 {
     return $y <= $x + $r / 2;
 }
 
-function isThirdQuarter($x, $y, $r)
+function isThirdQuarter(int $x, int $y, int $r) : bool
 {
     return abs(+$y) <= $r && abs(+$x) <= $r;
 }
 
-function isFourthQuarter($x, $y, $r)
+function isFourthQuarter(int $x, int $y, int $r) : bool
 {
     return false;
 }
