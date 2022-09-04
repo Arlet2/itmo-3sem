@@ -22,7 +22,7 @@ function sendRequest (method, url, args, handlingFunction) {
                 }
             }
         } catch (e) {
-            alert("Нет соединения с сервером");
+            alert("Проблемы с ответом от сервера: "+e);
         }
     }
 
