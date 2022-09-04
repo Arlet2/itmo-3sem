@@ -1,12 +1,13 @@
+<?php
+    require "php/generators.php";
+    session_start();
+?>
 <html>
     <head>
         <title>Лабораторная работа №1</title>
         <script src="js/coords-sender.js"></script>
         <script src="js/form-checker.js"></script>
         <script src="js/ajax-sender.js"></script>
-        <?php
-            require "php/generators.php";
-        ?>
     </head>
     <body>
         <div id="preview">
@@ -27,6 +28,18 @@
                 <input type="button" value="Отправить" onclick="sendCoordinates();">
             </form>
         </div>
-        <div id="table"></div>
+        <div id="table">
+            <table>
+                <tr>
+                    <td>Время</td>
+                    <td>Координаты</td>
+                    <td>Попадание</td>
+                    <td>Время выполнения скрипта</td>
+                </tr>
+                <tfoot id="receivingData">
+                <?=$_SESSION["rows"]?>
+                </tfoot>
+            </table>
+        </div>
     </body>
 </html>

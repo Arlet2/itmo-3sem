@@ -15,5 +15,5 @@ function createArgs (x, y, r) {
 }
 
 function handleRequest (httpRequest) {
-    document.getElementById("table").innerHTML = httpRequest.responseText;
+    document.getElementById("receivingData").innerHTML = httpRequest.responseText;
 }
