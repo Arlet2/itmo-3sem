@@ -43,7 +43,7 @@ if (!isset($_SESSION["rows"])) {
     $rows = new Rows($row);
 } else {
     $rows = $_SESSION["rows"];
-    $rows->pushBack($row);
+    $rows->pushFront($row);
 }
 
 $_SESSION["rows"] = $rows;

@@ -9,12 +9,12 @@ class Rows
         array_push($this->rows, $first_row);
     }
 
-    public function pushBack($row)
+    public function pushFront($row)
     {
         if (count($this->rows) > $this->MAX_SIZE_OF_ROWS) {
             array_shift($this->rows);
         }
-        array_push($this->rows, $row);
+        array_unshift($this->rows, $row);
     }
 
     public function getValues() : array
