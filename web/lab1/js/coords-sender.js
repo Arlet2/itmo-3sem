@@ -15,5 +15,5 @@ function createArgs (x, y, r) {
 }
 
 function handleRequest (httpRequest) {
-    alert(httpRequest.responseText); // поменять на изменение таблицы
+    document.getElementById("table").innerHTML = httpRequest.responseText;
 }
