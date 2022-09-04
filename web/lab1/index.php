@@ -1,5 +1,6 @@
 <?php
     require "php/generators.php";
+    require "php/rows-printer.php";
     session_start();
 ?>
 <html>
@@ -37,7 +38,11 @@
                     <td>Время выполнения скрипта</td>
                 </tr>
                 <tfoot id="receivingData">
-                <?=$_SESSION["rows"]?>
+                <?php
+                if(isset($_SESSION["rows"])) {
+                    printRows($_SESSION["rows"]);
+                }
+                ?>
                 </tfoot>
             </table>
         </div>
