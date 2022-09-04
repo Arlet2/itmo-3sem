@@ -1,7 +1,7 @@
 <?php
-    require "php/generators.php";
-    require "php/rows-printer.php";
-    session_start();
+require "php/generators.php";
+require "php/rows-printer.php";
+session_start();
 ?>
 <html>
     <head>
@@ -20,12 +20,12 @@
             <p>*Картинка*
             <form name="coords">
                 <p>X:
-                <?php generate_radio_buttons(-5, 3); ?>
+                <?php generate_radio_buttons(-5, 3);?>
                 <p>Y:
                 <input type="text" name="y" require placeholder="-5..5">
                 <p>R:
                 <select name = "r" require>
-                    <?php generate_options(1, 5); ?>
+                    <?php generate_options(1, 5);?>
                 </select>
                 <input type="button" value="Отправить" onclick="sendCoordinates();">
             </form>
@@ -40,7 +40,7 @@
                 </tr>
                 <tfoot id="receivingData">
                 <?php
-                if(isset($_SESSION["rows"])) {
+                if (isset($_SESSION["rows"])) {
                     printRows($_SESSION["rows"]);
                 }
                 ?>
