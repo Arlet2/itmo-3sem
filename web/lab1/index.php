@@ -27,5 +27,6 @@
                 <input type="button" value="Отправить" onclick="sendCoordinates();">
             </form>
         </div>
+        <div id="table"></div>
     </body>
 </html>
