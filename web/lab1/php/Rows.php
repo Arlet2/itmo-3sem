@@ -12,7 +12,7 @@ class Rows
     public function pushFront($row)
     {
         if (count($this->rows) > $this->MAX_SIZE_OF_ROWS) {
-            array_shift($this->rows);
+            array_pop($this->rows);
         }
         array_unshift($this->rows, $row);
     }
