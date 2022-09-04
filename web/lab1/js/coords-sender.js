@@ -1,4 +1,4 @@
-function sendCoordinates () {
+function sendCoordinates() {
     //let x = document.forms["coords"]["x"].value;
     //let y = document.forms["coords"]["y"].value.replace(',','.').replace(' ',"");
     //let r = document.forms["coords"]["r"].value;
@@ -34,13 +34,13 @@ function sendCoordinates () {
 }
 
 function clearSpacesAndChangeCommaToPoint(sendingValue) {
-    return sendingValue.replace(',','.').replace(' ', "");
+    return sendingValue.replace(',', '.').replace(' ', "");
 }
 
-function createArgs (x, y, r) {
-    return "x="+x+"&y="+y+"&r="+r;
+function createArgs(x, y, r) {
+    return "x=" + x + "&y=" + y + "&r=" + r;
 }
 
-function handleRequest (response) {
+function handleRequest(response) {
     document.getElementById("receivingData").innerHTML = response;
 }

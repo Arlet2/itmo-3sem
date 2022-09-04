@@ -1,5 +1,5 @@
 function validate(x, y, r) {
-    console.log("X: "+x+" Y: "+Number(y)+" R: "+r);
+    console.log("X: " + x + " Y: " + Number(y) + " R: " + r);
 
     return isXCoordinateCorrect(x) && isYCoordinateCorrect(y) && isRadiusCorrect(r);
 }
@@ -26,7 +26,7 @@ function isYCoordinateCorrect(coordinateY) {
         alert("Поле координаты y является обязательным");
         return false;
     }
-    
+
     if (!isNumeric(coordinateY)) {
         alert("Координата y должна быть числом");
         return false;
@@ -49,7 +49,7 @@ function calculateDigitsAfterPoint(number) {
 }
 
 function isNumeric(string) {
-   return !isNaN(string); 
+    return !isNaN(string);
 }
 
 function isRadiusCorrect(radius) {

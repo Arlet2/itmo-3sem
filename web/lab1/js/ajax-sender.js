@@ -1,11 +1,11 @@
-function sendRequest (method, url, args, handlingFunction) {
+function sendRequest(method, url, args, handlingFunction) {
     let httpRequest = createRequest();
 
     if (!httpRequest) {
         return;
     }
 
-    httpRequest.onreadystatechange = function() {
+    httpRequest.onreadystatechange = function () {
         try {
             if (httpRequest.readyState == 4) {
                 if (httpRequest.status == 200) {
@@ -17,21 +17,21 @@ function sendRequest (method, url, args, handlingFunction) {
                 }
 
                 else {
-                    console.print("ERROR: "+httpRequest.status);
+                    console.print("ERROR: " + httpRequest.status);
                     alert("Нет соединения с сервером");
                 }
             }
         } catch (e) {
-            alert("Проблемы с ответом от сервера: "+e);
+            alert("Проблемы с ответом от сервера: " + e);
         }
     }
 
     if (method.toLowerCase() == "post") {
-        sendByPost (httpRequest, url, args);
+        sendByPost(httpRequest, url, args);
     }
 
     else if (method.toLowerCase() == "get") {
-        sendByGet (httpRequest, url, args);
+        sendByGet(httpRequest, url, args);
     }
 
     else {
@@ -40,7 +40,7 @@ function sendRequest (method, url, args, handlingFunction) {
 
 }
 
-function createRequest () {
+function createRequest() {
 
     let request;
 
@@ -64,13 +64,13 @@ function createRequest () {
     return request;
 }
 
-function sendByPost (httpRequest, url, args) {
+function sendByPost(httpRequest, url, args) {
     httpRequest.open("POST", url);
     httpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
     httpRequest.send(args);
 }
 
-function sendByGet (httpRequest, url, args) {
-    httpRequest.open("GET", url+"?"+args);
+function sendByGet(httpRequest, url, args) {
+    httpRequest.open("GET", url + "?" + args);
     httpRequest.send(null);
 }
