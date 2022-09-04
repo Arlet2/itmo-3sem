@@ -1,10 +1,17 @@
 <?php
 
-$startTime = hrtime(true);
+session_start();
 
+require_once "Timer.php";
 require "utils.php";
 require "hit-checker.php";
 require "data-validator.php";
+
+//$_SERVER['REQUEST_METHOD'] == 'GET')
+
+$timer = new Timer();
+
+$timer->startCountdown();
 
 $x = preprocessValue($_POST["x"]);
 $y = preprocessValue($_POST["y"]);
@@ -22,6 +29,6 @@ if (!$dataIsCorrect) {
     echo "Не попал";
 }
 
-$interval = changePointToComma(round((hrtime(true) - $startTime) / (10 ** 6), 3)) . " ms";
+$interval = changePointToComma($timer->stopCountdown()) . " ms";
 
-echo " | " . $interval;
+echo " | $interval";
