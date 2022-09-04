@@ -2,6 +2,7 @@
 session_start();
 
 require_once "Timer.php";
+require "Row.php";
 require "utils.php";
 require "hit-checker.php";
 require "data-validator.php";
@@ -10,18 +11,27 @@ $timer = new Timer();
 
 $timer->startCountdown();
 
+$row;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $x = preprocessValue($_POST["x"]);
     $y = preprocessValue($_POST["y"]);
     $r = preprocessValue($_POST["r"]);
 
     $dataIsCorrect = isArgumentsAreNumbers($x, $y, $r) && checkX($x) && checkY($y) && checkR($r);
-} else {
-    $x = "UNKNOWN";
-    $y = "UNKNOWN";
-    $r = "UNKNOWN";
 
-    $dataIsCorrect = false;
+    $dataInfo;
+
+    if (!$dataIsCorrect) {
+        $dataInfo = "Ошибка ввода данных";
+    } else if (isHit($x, $y, $r)) {
+        $dataInfo = "Попал";
+    } else {
+        $dataInfo = "Не попал";
+    }
+
+    $row = new Row(date(DATE_ATOM, time()), $_POST["x"], $_POST["y"], $_POST["r"], $dataInfo, changePointToComma($timer->stopCountdown()) . " ms");
+} else {
+    $row = new Row("PLEASE", "USE", "ANOTHER", "METHOD", "FOR", "SENDING!");
 }
 ?>
 <table>
@@ -31,23 +41,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <td>Попадание</td>
         <td>Время выполнения скрипта</td>
     </tr>
-    <tr>
-        <td><?=date(DATE_ATOM, time());?></td>
-        <td>X: <?=changePointToComma($x)?>
-            <p>Y: <?=changePointToComma($y);?>
-            <p>Z: <?=changePointToComma($r);?>
-        </td>
-        <td>
-            <?php
-            if (!$dataIsCorrect) {
-                echo "Ошибка ввода данных";
-            } else if (isHit($x, $y, $r)) {
-                echo "Попал";
-            } else {
-                echo "Не попал";
-            }
-            ?>
-        </td>
-        <td><?=changePointToComma($timer->stopCountdown()) . " ms"?></td>
-    </tr>
+    <?php echo $row->getData(); ?>
 </table>
