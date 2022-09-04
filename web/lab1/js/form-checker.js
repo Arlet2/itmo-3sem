@@ -1,10 +1,10 @@
 function validate(x, y, r) {
     console.log("X: "+x+" Y: "+Number(y)+" R: "+r);
 
-    return checkXCoordinate(x) && checkYCoordinate(y) && checkRadius(r);
+    return isXCoordinateCorrect(x) && isYCoordinateCorrect(y) && isRadiusCorrect(r);
 }
 
-function checkXCoordinate(coordinateX) {
+function isXCoordinateCorrect(coordinateX) {
     if (coordinateX == "") {
         alert("Выберите значение координаты x из предложенных");
         return false;
@@ -16,7 +16,7 @@ function checkXCoordinate(coordinateX) {
     return true;
 }
 
-function checkYCoordinate(coordinateY) {
+function isYCoordinateCorrect(coordinateY) {
     if (calculateDigitsAfterPoint(coordinateY) >= 16) {
         alert("Введите координату y с меньшей точностью (до 15 знаков после запятой)");
         return false;
@@ -52,7 +52,7 @@ function isNumeric(string) {
    return !isNaN(string); 
 }
 
-function checkRadius(radius) {
+function isRadiusCorrect(radius) {
     if (!isNumeric(radius)) {
         alert("Радиус должен быть числом");
         return false;
