@@ -1,11 +1,14 @@
 <?php
-session_start();
 
-require_once "Timer.php";
 require "Row.php";
+require "Rows.php";
+require_once "Timer.php";
 require "utils.php";
 require "hit-checker.php";
 require "data-validator.php";
+require "rows-printer.php";
+
+session_start();
 
 $timer = new Timer();
 
@@ -33,7 +36,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 } else {
     $row = new Row("PLEASE", "USE", "ANOTHER", "METHOD", "FOR", "SENDING!");
 }
-$_SESSION["rows"] = $row->getData() . $_SESSION["rows"];
+
+$rows;
+
+if (!isset($_SESSION["rows"])) {
+    $rows = new Rows($row);
+} else {
+    $rows = $_SESSION["rows"];
+    $rows->pushBack($row);
+}
+
+$_SESSION["rows"] = $rows;
 ?>
-<?=$_SESSION["rows"]?>
-<!--<?php //echo $row->getData(); ?>-->
+
+<?php
+printRows($rows);
+?>
