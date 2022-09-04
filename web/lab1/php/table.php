@@ -33,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 } else {
     $row = new Row("PLEASE", "USE", "ANOTHER", "METHOD", "FOR", "SENDING!");
 }
+$_SESSION["rows"] = $_SESSION["rows"] . $row->getData();
 ?>
 <table>
     <tr>
@@ -41,5 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <td>Попадание</td>
         <td>Время выполнения скрипта</td>
     </tr>
-    <?php echo $row->getData(); ?>
+    <?=$_SESSION["rows"]?>
+    <!--<?php //echo $row->getData(); ?>-->
 </table>
