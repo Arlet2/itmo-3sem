@@ -32,10 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <td>Время выполнения скрипта</td>
     </tr>
     <tr>
-        <td><?date(DATE_ATOM, time());?></td>
-        <td>X: <?changePointToComma($x)?>
-            Y: <?changePointToComma($y);?>
-            Z: <?changePointToComma($r);?>
+        <td><?=date(DATE_ATOM, time());?></td>
+        <td>X: <?=changePointToComma($x)?>
+            <p>Y: <?=changePointToComma($y);?>
+            <p>Z: <?=changePointToComma($r);?>
         </td>
         <td>
             <?php
@@ -48,6 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
             ?>
         </td>
-        <td><?changePointToComma($timer->stopCountdown()) . " ms"?></td>
+        <td><?=changePointToComma($timer->stopCountdown()) . " ms"?></td>
     </tr>
 </table>
