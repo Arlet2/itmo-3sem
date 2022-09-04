@@ -33,14 +33,14 @@ function sendCoordinates () {
     });
 }
 
+function clearSpacesAndChangeCommaToPoint(sendingValue) {
+    return sendingValue.replace(',','.').replace(' ', "");
+}
+
 function createArgs (x, y, r) {
     return "x="+x+"&y="+y+"&r="+r;
 }
 
 function handleRequest (response) {
     document.getElementById("receivingData").innerHTML = response;
-}
-
-function clearSpacesAndChangeCommaToPoint(sendingValue) {
-    return (""+sendingValue).replace(',','.').replace(' ', "");
 }
