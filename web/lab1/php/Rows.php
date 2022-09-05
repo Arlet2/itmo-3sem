@@ -1,7 +1,7 @@
 <?php
 class Rows
 {
-    private $MAX_SIZE_OF_ROWS = 7;
+    private $MAX_SIZE_OF_ROWS = 10;
     private $rows = array();
 
     public function __construct($first_row)
