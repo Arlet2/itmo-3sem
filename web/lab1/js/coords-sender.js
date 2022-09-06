@@ -29,22 +29,23 @@ function sendCoordinates() {
         },
         success: function (response) {
             try {
-                if (httpRequest.readyState == 4) {
-                    if (httpRequest.status == 200) {
-                        handleRequest(response);
-                    }
-    
-                    else if (httpRequest.status == 0) {
-                        alert("Нет соединения с сервером");
-                    }
-    
-                    else {
-                        console.print("ERROR: " + httpRequest.status);
-                        alert("Нет соединения с сервером");
-                    }
-                }
+                handleRequest(response);
             } catch (e) {
                 alert("Проблемы с ответом от сервера: " + e);
+            }
+        },
+        statusCode: {
+            404: function() {
+                alert("File not found.");
+            },
+            410: function() {
+                alert("Content was removed.");
+            },
+            500: function() {
+                alert("Server error");
+            },
+            502: function() {
+                alert("Bad gateway");
             }
         }
     });
