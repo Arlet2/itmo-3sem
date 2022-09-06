@@ -42,6 +42,13 @@ function isYCoordinateCorrect(coordinateY) {
 
 function calculateDigitsAfterPoint(number) {
     let digitsAfterPoint = number.match(/(?<=\.)\d*/);
+
+    if (number.includes("e+")) {
+        digitsAfterPoint-= number.match(/(?<=e\+)\d*/);
+    }
+    else if(number.includes("e-")) {
+        digitsAfterPoint+= number.match(/(?<=e\-)\d*/); 
+    }
     if (digitsAfterPoint === null || digitsAfterPoint === undefined) {
         return 0;
     }
