@@ -23,14 +23,14 @@ class Row
     public function getData(): string
     {
         return
-            "<tr>
-        <td> $this->time </td>
-        <td>X: $this->x
+            "<tr class=\"dataRow\">
+        <td class=\"dataRow\"> $this->time </td>
+        <td class=\"dataRow\">X: $this->x
             <p>Y: $this->y
-            <p>Z: $this->r
+            <p>R: $this->r
         </td>
-        <td>$this->dataInfo</td>
-        <td>$this->interval</td>
+        <td class=\"dataRow\">$this->dataInfo</td>
+        <td class=\"dataRow\">$this->interval</td>
         </tr>";
     }
 
