@@ -28,7 +28,24 @@ function sendCoordinates() {
             }
         },
         success: function (response) {
-            handleRequest(response);
+            try {
+                if (httpRequest.readyState == 4) {
+                    if (httpRequest.status == 200) {
+                        handleRequest(response);
+                    }
+    
+                    else if (httpRequest.status == 0) {
+                        alert("Нет соединения с сервером");
+                    }
+    
+                    else {
+                        console.print("ERROR: " + httpRequest.status);
+                        alert("Нет соединения с сервером");
+                    }
+                }
+            } catch (e) {
+                alert("Проблемы с ответом от сервера: " + e);
+            }
         }
     });
 }
