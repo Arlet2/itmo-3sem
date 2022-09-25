@@ -1,0 +1,3 @@
+[submodule "assignment-1-io-library"]
+	path = assignment-1-io-library
+	url = https://gitlab.se.ifmo.ru/Arlet/assignment-1-io-library.git

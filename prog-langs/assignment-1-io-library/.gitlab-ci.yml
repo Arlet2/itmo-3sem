@@ -1,0 +1,14 @@
+image: generic-c
+
+stages:
+  - test
+
+test:
+  stage: test 
+  script:
+    - chmod u+x test.py
+    - ./test.py
+  artifacts:
+    when: always
+    reports:
+      junit: report.xml
