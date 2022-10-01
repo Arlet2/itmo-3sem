@@ -8,7 +8,7 @@ public class CoordinatesValidator {
     private int minR;
     private int maxR;
 
-    public boolean isCoordinatesHaveCorrectTypes(Object x, Object y, Object r) {
+    public boolean isCoordinatesHaveCorrectTypes(String x, String y, String r) {
         try {
             tryToCastXToType(x);
             tryToCastYToType(y);
@@ -19,15 +19,15 @@ public class CoordinatesValidator {
         return true;
     }
 
-    private void tryToCastXToType(Object x) {
-        Float.parseFloat((String)x);
+    private void tryToCastXToType(String x) {
+        Float.parseFloat(x);
     }
 
-    private void tryToCastYToType(Object y) {
-        Float.parseFloat((String)y);
+    private void tryToCastYToType(String y) {
+        Float.parseFloat(y);
     }
-    private void tryToCastRToType(Object r) {
-        Integer.parseInt((String)r);
+    private void tryToCastRToType(String r) {
+        Integer.parseInt(r);
     }
 
     public boolean isCoordinatesCorrect(float x, float y, int r) {
