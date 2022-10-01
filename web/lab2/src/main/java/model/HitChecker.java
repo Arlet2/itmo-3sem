@@ -6,10 +6,9 @@ public class HitChecker {
     private float y;
     private int r;
 
-    public boolean isHit(float x, float y, int r) {
-        this.x = x;
-        this.y = y;
-        this.r = r;
+    public boolean isHit(String textX, String textY, String textR) {
+        castTextToNumbers(textX, textY, textR);
+
         if (x == 0 || y == 0)
             return checkAxes();
         else if (x > 0 && y > 0)
@@ -20,6 +19,12 @@ public class HitChecker {
             return checkThirdQuarter();
         else
             return checkFourthQuarter();
+    }
+
+    private void castTextToNumbers(String textX, String textY, String textR) {
+        this.x = Float.parseFloat(textX);
+        this.y = Float.parseFloat(textY);
+        this.r = Integer.getInteger(textR);
     }
 
     private boolean checkAxes() {
