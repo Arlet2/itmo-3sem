@@ -51,4 +51,12 @@ public class Row implements Serializable {
     public String getHitStatus() {
         return hitStatus;
     }
+
+    @Override
+    public String toString() {
+        return "<tr>" +
+                "<td>X: "+x+"\nY: "+y+"\nR: "+r+"</td>"+
+                "<td>"+hitStatus+"</td>"+
+                "</tr>";
+    }
 }
