@@ -13,7 +13,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Лабораторная работа №1</title>
+    <title>Лабораторная работа №2</title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="js/coords-sender.js"></script>
     <script src="js/form-checker.js"></script>
@@ -26,7 +26,7 @@
         <table class="head">
             <tr>
                 <td class="head"><p>Шульга Артём Игоревич P32111</td>
-                <td class="head"><p>Вариант - <b>1819</b></td>
+                <td class="head"><p>Вариант - <b>1167</b></td>
             </tr>
         </table>
     </tr>
