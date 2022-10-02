@@ -34,7 +34,7 @@
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>index</finalName>
+        <finalName>lab2</finalName>
     </build>
 
 </project>
