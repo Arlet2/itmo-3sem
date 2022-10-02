@@ -1,0 +1,75 @@
+body {
+    text-align: center;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+table {
+    align-content: center;
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+tr {
+    text-align: center;
+}
+
+td {
+    vertical-align: top;
+}
+
+/* каскадирование */
+table.head {
+    padding: 5px;
+    width: 100%;
+}
+
+.head p {
+    font-family: serif, 'Times New Roman', Times;
+    font-size: 14pt;
+    color: black;
+}
+
+th {
+    border: 2px solid;
+}
+
+p.task {
+    text-align: left;
+}
+
+.dataRow {
+    border: 1px solid;
+}
+
+input[type="radio"] {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+li.task {
+    text-align: left;
+}
+
+table.radioButtons {
+    height: 100%;
+}
+
+td.head {
+    width: 50%;
+}
+
+td.head:first-child {
+    text-align: right;
+}
+
+td.head:last-child {
+    text-align: left;
+}
+
+/* дочерние элементы */
+form[name = "coords"] > p {
+    font-weight: bold;
+}
