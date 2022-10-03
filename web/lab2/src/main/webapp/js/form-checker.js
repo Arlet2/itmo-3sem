@@ -32,7 +32,7 @@ function isYCoordinateCorrect(coordinateY) {
         return false;
     }
 
-    if (coordinateY >= 3 || coordinateY <= -3) {
+    if (coordinateY > 3 || coordinateY < -3) {
         alert("Координата y должна быть от -3 до 3");
         return false;
     }
