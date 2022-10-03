@@ -54,9 +54,9 @@ public class Row implements Serializable {
 
     @Override
     public String toString() {
-        return "<tr>" +
-                "<td>X: "+x+"\nY: "+y+"\nR: "+r+"</td>"+
-                "<td>"+hitStatus+"</td>"+
+        return "<tr class=\"dataRow\">" +
+                "<td class=\"dataRow\">X: "+x+"\nY: "+y+"\nR: "+r+"</td>"+
+                "<td class=\"dataRow\">"+hitStatus+"</td>"+
                 "</tr>";
     }
 }
