@@ -1,16 +1,36 @@
 function sendCoordinates() {
 
-    let x = clearSpacesAndChangeCommaToPoint($('input[name="x"]:checked').val());
-    let y = clearSpacesAndChangeCommaToPoint($('input[name="y"]').val());
-    let r = clearSpacesAndChangeCommaToPoint($('select[name="r"]').val());
+    let x = $('input[name="x"]:checked').val();
+    let y = $('input[name="y"]').val();
+    let r = $('input[name="r"]:checked').val();
+
+    if (isXEmpty(x)) {
+        alert("Выберете координату x");
+        return;
+    }
+
+    if (isYEmpty(y)) {
+        alert("Выберете координату y");
+        return;
+    }
+
+    if (isREmpty(r)) {
+        alert("Выберете радиус");
+        return;
+    }
+
+    x = clearSpacesAndChangeCommaToPoint(x);
+    y = clearSpacesAndChangeCommaToPoint(y);
+    r = clearSpacesAndChangeCommaToPoint(r);
 
     $.ajax({
-        type: "POST",
-        url: "php/table.php",
+        type: "GET",
+        url: "controller",
         data: {
             'x': $('input[name="x"]:checked').val(),
             'y': $('input[name="y"]').val(),
-            'r': $('select[name="r"]').val()
+            'r': $('input[name="r"]:checked').val(),
+            'mode': 0
         },
         cache: false,
         dataType: "html",
@@ -41,6 +61,18 @@ function sendCoordinates() {
             }
         }
     });
+}
+
+function isXEmpty(x) {
+    return x === undefined;
+}
+
+function isYEmpty(y) {
+    return y === undefined;
+}
+
+function isREmpty(r) {
+    return r === undefined;
 }
 
 function clearSpacesAndChangeCommaToPoint(sendingValue) {
