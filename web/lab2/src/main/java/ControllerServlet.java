@@ -11,7 +11,7 @@ public class ControllerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (isCoordinates(req))
-            resp.sendRedirect(req.getContextPath() + "/area_checker");
+            getServletContext().getNamedDispatcher("AreaCheckServlet").forward(req, resp);
         else {
             getServletContext().getRequestDispatcher("/index.jsp").include(req, resp);
         }
