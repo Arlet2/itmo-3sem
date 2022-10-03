@@ -19,9 +19,10 @@ public class DataSaver {
             rows = new ArrayList<>();
         }
 
-        Optional.ofNullable(rows)
-                .orElseGet(ArrayList::new)
-                .add(row);
+        if (Optional.ofNullable(rows).isEmpty())
+            rows = new ArrayList<>();
+
+        rows.add(row);
 
         session.setAttribute(SAVING_ATTRIBUTE_NAME, rows);
     }
