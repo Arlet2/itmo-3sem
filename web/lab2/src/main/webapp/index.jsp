@@ -2,6 +2,7 @@
 <%@ page import="java.util.Optional" %>
 <%@ page import="model.DataSaver" %>
 <%@ page import="java.util.List" %>
+<%@ page import="model.RowsPrinting" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -104,12 +105,8 @@
             <!--<th>Время выполнения скрипта</td> -->
             <tfoot id="receivingData">
             <%
-                List<Row> rows = (List<Row>) session.getAttribute(DataSaver.SAVING_ATTRIBUTE_NAME);
-
-                if (Optional.ofNullable(rows).isPresent()) {
-                    for (Row row : rows)
-                        out.println(row.toString());
-                }
+                List<Row> rows = DataSaver.loadData(session);
+                RowsPrinting.printRows(rows);
             %>
             </tfoot>
         </table>
