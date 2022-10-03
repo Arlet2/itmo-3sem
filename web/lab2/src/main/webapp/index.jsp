@@ -3,6 +3,7 @@
 <%@ page import="model.DataSaver" %>
 <%@ page import="java.util.List" %>
 <%@ page import="model.RowsPrinting" %>
+<%@ page import="static java.lang.System.out" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -106,7 +107,10 @@
             <tfoot id="receivingData">
             <%
                 List<Row> rows = DataSaver.loadData(session);
-                RowsPrinting.printRows(rows);
+                if (Optional.ofNullable(rows).isPresent()) {
+                    for (Row row : rows)
+                        out.println(row.toString());
+                }
             %>
             </tfoot>
         </table>
