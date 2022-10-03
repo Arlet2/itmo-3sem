@@ -9,7 +9,8 @@ import java.util.Optional;
 
 public class DataSaver {
 
-    public static final String SAVING_ATTRIBUTE_NAME = "rows";
+    public static final int MAX_ROWS = 10;
+    private static final String SAVING_ATTRIBUTE_NAME = "rows";
 
     private DataSaver() {
 
@@ -26,7 +27,9 @@ public class DataSaver {
         if (Optional.ofNullable(rows).isEmpty())
             rows = new ArrayList<>();
 
-        rows.add(row);
+        if (rows.size() >= MAX_ROWS)
+            rows.remove(MAX_ROWS-1);
+        rows.add(0, row);
 
         session.setAttribute(SAVING_ATTRIBUTE_NAME, rows);
     }
