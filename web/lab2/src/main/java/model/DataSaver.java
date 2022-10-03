@@ -11,7 +11,11 @@ public class DataSaver {
 
     public static final String SAVING_ATTRIBUTE_NAME = "rows";
 
-    public void saveData(HttpSession session, Row row) {
+    private DataSaver() {
+
+    }
+
+    public static void saveData(HttpSession session, Row row) {
         List<Row> rows;
         try {
             rows = (List<Row>) session.getAttribute(SAVING_ATTRIBUTE_NAME);
@@ -25,5 +29,9 @@ public class DataSaver {
         rows.add(row);
 
         session.setAttribute(SAVING_ATTRIBUTE_NAME, rows);
+    }
+
+    public static List<Row> loadData(HttpSession session) {
+        return (List<Row>) session.getAttribute(SAVING_ATTRIBUTE_NAME);
     }
 }
