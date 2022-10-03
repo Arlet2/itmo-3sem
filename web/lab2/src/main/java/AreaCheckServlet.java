@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Optional;
 
 @WebServlet("/area_checker")
 //todo: @ServletSecurity()
@@ -34,12 +35,21 @@ public class AreaCheckServlet extends HttpServlet {
         String x = req.getParameter("x");
         String y = req.getParameter("y");
         String r = req.getParameter("r");
+        int mode = Integer.parseInt(
+                Optional.ofNullable(req.getParameter("mode")).orElse("0")
+        );
 
-        Row row = rowsCreator.createRow(x, y, r);
+        System.out.println(mode);
 
-        dataSaver.saveData(req.getSession(), row);
+        if (mode == 0) {
+            Row row = rowsCreator.createRow(x, y, r);
 
-        getServletContext().getRequestDispatcher("/table.jsp").forward(req, resp);
+            dataSaver.saveData(req.getSession(), row);
+
+            getServletContext().getRequestDispatcher("/table.jsp").forward(req, resp);
+        } else if (mode == 1) {
+            //resp.
+        }
     }
 
 }
