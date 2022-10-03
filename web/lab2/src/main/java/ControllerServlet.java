@@ -6,14 +6,20 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Optional;
 
-@WebServlet("/")
+@WebServlet("/controller")
 public class ControllerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (isCoordinates(req))
             resp.sendRedirect(req.getContextPath() + "/area_checker");
-        else
-            getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+        else {
+            getServletContext().getRequestDispatcher("/index.jsp").include(req, resp);
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
     }
 
     private boolean isCoordinates(HttpServletRequest req) {

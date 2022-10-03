@@ -2,23 +2,14 @@
 <%@ page import="java.util.Optional" %>
 <%@ page import="model.DataSaver" %>
 <%@ page import="java.util.List" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: arlet
-  Date: 02.10.2022
-  Time: 19:35
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Лабораторная работа №2</title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="js/coords-sender.js"></script>
-    <script src="js/form-checker.js"></script>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 <table class="mainTable">
@@ -66,7 +57,7 @@
             <tr><h2><b>Ввод данных</b></h2></tr>
             <tr>
                 <td>
-                    <img src="images/info.png">
+                    <img src="../images/info.png">
                 </td>
                 <td>
                     <form name="coords">
@@ -125,4 +116,6 @@
     </tr>
 </table>
 </body>
+<script src="../js/coords-sender.js"></script>
+<script src="../js/form-checker.js"></script>
 </html>
