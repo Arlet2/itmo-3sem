@@ -19,8 +19,7 @@ public class AreaCheckServlet extends HttpServlet {
     private final CoordinatesValidator validator = new CoordinatesValidator();
     private final HitChecker hitChecker = new HitChecker();
 
-    private final RowsCreator rowsCreator = new RowsCreator(validator, hitChecker);
-    private final DataSaver dataSaver = new DataSaver();
+    private final RowsCreator rowsCreator = new RowsCreator(validator, hitChecker);;
 
     @Override
     public void init() throws ServletException {
@@ -42,7 +41,7 @@ public class AreaCheckServlet extends HttpServlet {
         if (mode == 0) {
             Row row = rowsCreator.createRow(x, y, r);
 
-            dataSaver.saveData(req.getSession(), row);
+            DataSaver.saveData(req.getSession(), row);
             getServletContext().getRequestDispatcher("/table.jsp").forward(req, resp);
         } else if (mode == 1) {
             //resp.
