@@ -24,7 +24,7 @@ public class HitChecker {
     private void castTextToNumbers(String textX, String textY, String textR) {
         this.x = Float.parseFloat(textX);
         this.y = Float.parseFloat(textY);
-        this.r = Integer.getInteger(textR);
+        this.r = Integer.parseInt(textR);
     }
 
     private boolean checkAxes() {
