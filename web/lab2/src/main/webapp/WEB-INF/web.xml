@@ -16,6 +16,11 @@
     </servlet>
 
     <servlet-mapping>
+        <servlet-name>ControllerServlet</servlet-name>
+        <url-pattern>/controller</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
         <servlet-name>AreaCheckServlet</servlet-name>
         <url-pattern>/area_checker</url-pattern>
     </servlet-mapping>
