@@ -39,13 +39,10 @@ public class AreaCheckServlet extends HttpServlet {
                 Optional.ofNullable(req.getParameter("mode")).orElse("0")
         );
 
-        System.out.println(mode);
-
         if (mode == 0) {
             Row row = rowsCreator.createRow(x, y, r);
 
             dataSaver.saveData(req.getSession(), row);
-
             getServletContext().getRequestDispatcher("/table.jsp").forward(req, resp);
         } else if (mode == 1) {
             //resp.
