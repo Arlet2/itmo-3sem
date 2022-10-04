@@ -2,8 +2,6 @@
 <%@ page import="java.util.Optional" %>
 <%@ page import="model.DataSaver" %>
 <%@ page import="java.util.List" %>
-<%@ page import="model.RowsPrinting" %>
-<%@ page import="static java.lang.System.out" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -60,7 +58,7 @@
             <tr><h2><b>Ввод данных</b></h2></tr>
             <tr>
                 <td>
-
+                    <img src="images/map.svg" class="map">
                 </td>
                 <td>
                     <form name="coords">
