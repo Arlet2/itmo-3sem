@@ -1,9 +1,13 @@
 $('input[name="x"]').on('change', function() {
+    let isChecked = $(this).prop('checked');
     $('input[name="x"]').prop('checked', false);
-    $(this).prop('checked', true);
+    if (isChecked)
+        $(this).prop('checked', true);
 });
 
 $('input[name="r"]').on('change', function() {
+    let isChecked = $(this).prop('checked');
     $('input[name="r"]').prop('checked', false);
-    $(this).prop('checked', true);
+    if (isChecked)
+        $(this).prop('checked', true);
 });
