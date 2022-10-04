@@ -98,12 +98,12 @@
     </tr>
     <tr>
         <table class="results">
-            <!--<th>Время</td> -->
+            <th>Время</td>
             <th>Координаты
             </td>
             <th>Попадание
             </td>
-            <!--<th>Время выполнения скрипта</td> -->
+            <th>Время выполнения скрипта</td>
             <tfoot id="receivingData">
             <%
                 List<Row> rows = DataSaver.loadData(session);

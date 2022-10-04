@@ -2,6 +2,9 @@ package model;
 
 import data.Row;
 
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class RowsCreator {
 
     private final CoordinatesValidator validator;
@@ -13,7 +16,11 @@ public class RowsCreator {
     }
 
     public Row createRow(String x, String y, String r) {
+        long startTime = System.currentTimeMillis();
         String result;
+        String time = ZonedDateTime.now()
+                .format(DateTimeFormatter
+                        .ofPattern("dd.MM.yyyy HH:mm:ss - VV O"));
         if (!validator.isCoordinatesHaveCorrectTypes(x, y, r)) {
             result = "Incorrect data";
         } else {
@@ -23,6 +30,8 @@ public class RowsCreator {
                 result = "no hit...";
         }
 
-        return new Row(x, y, r, result);
+        long endTime = System.currentTimeMillis();
+
+        return new Row(time, x, y, r, result, (endTime-startTime)+"");
     }
 }
