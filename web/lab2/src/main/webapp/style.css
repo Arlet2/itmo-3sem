@@ -44,6 +44,11 @@ p.task {
     border: 1px solid;
 }
 
+canvas {
+    border: 1px solid;
+    position: absolute;
+}
+
 input[type="radio"] {
     padding-left: 15px;
     padding-right: 15px;
