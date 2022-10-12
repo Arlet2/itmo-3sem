@@ -1,12 +1,6 @@
-[submodule "assignment-1-io-library"]
-	path = assignment-1-io-library
-	url = https://gitlab.se.ifmo.ru/Arlet/assignment-1-io-library.git
-[submodule "assignment-2-dictionary"]
-	path = assignment-2-dictionary
-	url = https://gitlab.se.ifmo.ru/Arlet/assignment-2-dictionary.git
 [submodule "prog-langs/assignment-1-io-library"]
 	path = prog-langs/assignment-1-io-library
-	url = https://gitlab.se.ifmo.ru/Arlet/assignment-1-io-library.git
+	url = https://gitlab.se.ifmo.ru/Arlet/assignment-1-io-library
 [submodule "prog-langs/assignment-2-dictionary"]
 	path = prog-langs/assignment-2-dictionary
-	url = https://gitlab.se.ifmo.ru/Arlet/assignment-2-dictionary.git
+	url = https://gitlab.se.ifmo.ru/Arlet/assignment-2-dictionary
