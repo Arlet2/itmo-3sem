@@ -11,13 +11,21 @@ global read_word
 global parse_uint
 global parse_int
 global string_copy
+
+%define EXIT_SYSCALL 60
+%define WRITE_SYSCALL 1
+%define NEW_LINE_SYMBOL 0xA
+%define MINUS_SYMBOL 0x2D
+%define TAB_SYMBOL 0x9
+%define SPACE_SYMBOL 0x20
+%define PLUS_SYMBOL 0x2B
 section .data
 
 section .text
  
 ; Принимает код возврата и завершает текущий процесс
 exit: 
-    mov rax, 60 ; exit syscall
+    mov rax, EXIT_SYSCALL ; exit syscall
     syscall
 
 ; Принимает указатель на нуль-терминированную строку, возвращает её длину
@@ -40,11 +48,14 @@ string_length:
 
 ; Принимает указатель на нуль-терминированную строку, выводит её в stdout
 print_string:
+    push rdi
     call string_length
+    pop rdi
+    
     mov rdx, rax ; записываем количество байт для вывода (количество символов)
     
     mov rsi, rdi ; передаем указатель на строку в параметр syscall
-    mov rax, 1 ; syscall for write
+    mov rax, WRITE_SYSCALL ; syscall for write
     mov rdi, 1 ; дескриптор (stdout)
 
     syscall
@@ -55,7 +66,7 @@ print_string:
 print_char:
     push rdi ; сохраняем код символа для указания на него
 
-    mov rax, 1 ; номер syscall (write)
+    mov rax, WRITE_SYSCALL ; номер syscall (write)
     mov rdi, 1 ; stdout
     mov rsi, rsp ; берем указатель на код символа для печати
     mov rdx, 1 ; количество байт (1 символ)
@@ -68,7 +79,7 @@ print_char:
 
 ; Переводит строку (выводит символ с кодом 0xA)
 print_newline:
-    mov rdi, 0xA ; загрузка символа \n
+    mov rdi, NEW_LINE_SYMBOL ; загрузка символа \n
     call print_char
     ret
 
@@ -114,7 +125,7 @@ print_int:
     neg rdi
     push rdi
     ; печать символа минуса
-    mov rdi, 0x2D
+    mov rdi, MINUS_SYMBOL
     call print_char
 
     pop rdi
@@ -202,26 +213,26 @@ read_word:
         pop rsi
         pop r10
 
-        cmp al, 0x20
+        cmp al, SPACE_SYMBOL
         je .skip_space_symbols
 
-        cmp al, 0x9
+        cmp al, TAB_SYMBOL
         je .skip_space_symbols
 
-        cmp al, 0xA
+        cmp al, NEW_LINE_SYMBOL
         je .skip_space_symbols
     xor rcx, rcx
     .loop:
         cmp al, 0x0
         je .end_of_stream
 
-        cmp al, 0x20
+        cmp al, SPACE_SYMBOL
         je .end_of_stream
 
-        cmp al, 0x9
+        cmp al, TAB_SYMBOL
         je .end_of_stream
 
-        cmp al, 0xA
+        cmp al, NEW_LINE_SYMBOL
         je .end_of_stream
 
         cmp rcx, rsi
@@ -305,10 +316,10 @@ parse_uint:
 parse_int:
     mov r10b, [rdi]
 
-    cmp r10b, 0x2D ; проверка на минус
+    cmp r10b, MINUS_SYMBOL ; проверка на минус
     je .print_neg_number
 
-    cmp r10b, 0x2B ; проверка на плюс
+    cmp r10b, PLUS_SYMBOL ; проверка на плюс
     je .print_plus_number
 
     ; проверка на вхождение символа в диапазон цифр
