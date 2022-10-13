@@ -30,7 +30,11 @@ public class CoordinatesValidator {
         Integer.parseInt(r);
     }
 
-    public boolean isCoordinatesCorrect(float x, float y, int r) {
+    public boolean isCoordinatesCorrect(String textX, String textY, String textR) {
+        float x = Float.parseFloat(textX);
+        float y = Float.parseFloat(textY);
+        int r = Integer.parseInt(textR);
+
         return isXCorrect(x) && isYCorrect(y) && isRCorrect(r);
     }
 
@@ -75,4 +79,5 @@ public class CoordinatesValidator {
         this.maxR = maxR;
         return this;
     }
+
 }

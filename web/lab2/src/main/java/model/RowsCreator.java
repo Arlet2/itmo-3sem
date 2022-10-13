@@ -21,7 +21,7 @@ public class RowsCreator {
         String time = ZonedDateTime.now()
                 .format(DateTimeFormatter
                         .ofPattern("dd.MM.yyyy HH:mm:ss - VV O"));
-        if (!validator.isCoordinatesHaveCorrectTypes(x, y, r)) {
+        if (!validator.isCoordinatesHaveCorrectTypes(x, y, r) && !validator.isCoordinatesCorrect(x, y, r)) {
             result = "Incorrect data";
         } else {
             if (hitChecker.isHit(x, y, r))
