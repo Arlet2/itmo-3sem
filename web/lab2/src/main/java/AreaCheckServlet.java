@@ -44,8 +44,7 @@ public class AreaCheckServlet extends HttpServlet {
             DataSaver.saveData(req.getSession(), row);
             getServletContext().getRequestDispatcher("/table.jsp").forward(req, resp);
         } else if (mode == 1) {
-            //resp.
+            resp.getWriter().write(hitChecker.isHit(x, y, r)+"");
         }
     }
-
 }
