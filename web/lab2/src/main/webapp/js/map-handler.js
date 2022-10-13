@@ -45,9 +45,17 @@ function setResponseOnMap(response, coordinates) {
     coordinates.y *= -(coefficientY/coordinates.r);
 
     console.log(response);
+
+    let color;
+
+    if (response=="true")
+        color = "green";
+    else
+        color = "red";
+
     let canvas = $('canvas.map')[0];
     let ctx = canvas.getContext('2d');
-    drawCircle(ctx, coordinates.x+canvas.width/2, coordinates.y+canvas.height/2, circleSize, "green");
+    drawCircle(ctx, coordinates.x+canvas.width/2, coordinates.y+canvas.height/2, circleSize, color);
 }
 
 function drawCircle(context, x, y, radius, color) {
