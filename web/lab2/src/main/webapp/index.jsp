@@ -111,7 +111,7 @@
                               %>
                             </tr>
                             <tr>
-                                <input type="button" value="Отправить" onclick="sendCoordinates();">
+                                <input type="button" name="submitButton" value="Отправить">
                             </tr>
                         </table>
                     </form>
@@ -147,4 +147,5 @@
 <script src="js/form-checker.js"></script>
 <script src="js/input-handler.js"></script>
 <script src="js/map-handler.js"></script>
+<script src="js/form-handler.js"></script>
 </html>

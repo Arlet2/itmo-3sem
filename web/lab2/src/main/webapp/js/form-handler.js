@@ -1,5 +1,10 @@
 const TABLE_MODE = 0;
 
+$('input[name="submitButton"]').on('click', function (event) {
+    console.log("CLICK");
+    sendCoordinatesByForm();
+});
+
 function sendCoordinatesByForm() {
 
     let x = $('input[name="x"]:checked').val();
