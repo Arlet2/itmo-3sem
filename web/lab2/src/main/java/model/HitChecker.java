@@ -45,6 +45,6 @@ public class HitChecker {
     }
 
     private boolean checkFourthQuarter() {
-        return (x / 2) - (r / 2f) >= y;
+        return (x / 2) - (r / 2f) <= y;
     }
 }
