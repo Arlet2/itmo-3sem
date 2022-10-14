@@ -1,6 +1,6 @@
 const coefficientX = $('canvas.map')[0].width/2.32;
 const coefficientY = $('canvas.map')[0].height/2.32;
-const circleSize = $('canvas.map')[0].width/50;
+const circleSize = $('canvas.map')[0].width/100;
 const MAP_MODE = 1;
 
 $('canvas.map').on('click', function(event) {

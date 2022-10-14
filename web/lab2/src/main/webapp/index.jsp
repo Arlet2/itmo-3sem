@@ -5,8 +5,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%!
-    final int heightOfMap = 400;
-    final int widthOfMap = 400;
+    final int heightOfMap = 600;
+    final int widthOfMap = 600;
 %>
 <!DOCTYPE html>
 <html>
