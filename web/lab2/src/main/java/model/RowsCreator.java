@@ -2,6 +2,8 @@ package model;
 
 import data.Row;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -16,7 +18,7 @@ public class RowsCreator {
     }
 
     public Row createRow(String x, String y, String r) {
-        long startTime = System.currentTimeMillis();
+        long startTime = System.nanoTime();
         String result;
         String time = ZonedDateTime.now()
                 .format(DateTimeFormatter
@@ -30,8 +32,10 @@ public class RowsCreator {
                 result = "no hit...";
         }
 
-        long endTime = System.currentTimeMillis();
+        long endTime = System.nanoTime();
 
-        return new Row(time, x, y, r, result, (endTime-startTime)+"");
+        return new Row(time, x, y, r, result,
+                new DecimalFormat("#0.00")
+                        .format((endTime-startTime)*Math.pow(10, -6))+"");
     }
 }
