@@ -135,7 +135,7 @@
                 List<Row> rows = DataSaver.loadData(session);
                 if (Optional.ofNullable(rows).isPresent()) {
                     for (Row row : rows)
-                        out.println(row.toString());
+                        out.println(row.getHTMLRow());
                 }
             %>
             </tfoot>
