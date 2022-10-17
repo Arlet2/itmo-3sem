@@ -13,13 +13,8 @@ public class ControllerServlet extends HttpServlet {
         if (isCoordinates(req))
             getServletContext().getNamedDispatcher("AreaCheckServlet").forward(req, resp);
         else {
-            getServletContext().getRequestDispatcher("/index.jsp").include(req, resp);
+            getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
         }
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
     }
 
     private boolean isCoordinates(HttpServletRequest req) {
