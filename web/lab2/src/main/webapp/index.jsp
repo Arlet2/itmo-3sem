@@ -113,6 +113,9 @@
                             <tr>
                                 <input type="button" name="submitButton" value="Отправить">
                             </tr>
+                            <tr>
+                                <input type="button" name="clearButton" value="Очистить">
+                            </tr>
                         </table>
                     </form>
                 </td>
@@ -148,4 +151,5 @@
 <script src="js/input-handler.js"></script>
 <script src="js/map-handler.js"></script>
 <script src="js/form-handler.js"></script>
+<script src="js/map-clear.js"></script>
 </html>
