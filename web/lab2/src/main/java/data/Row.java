@@ -65,13 +65,12 @@ public class Row implements Serializable {
         return hitStatus;
     }
 
-    @Override
-    public String toString() {
+    public String getHTMLRow() {
         return "<tr class=\"dataRow\">" +
-                "<td class=\"dataRow\">"+time+"</td>" +
-                "<td class=\"dataRow\">X: "+x+"\nY: "+y+"\nR: "+r+"</td>"+
-                "<td class=\"dataRow\">"+hitStatus+"</td>"+
-                "<td class=\"dataRow\">"+(executionTime)+" ms</td>"+
+                "<td class=\"dataRow\">" + time + "</td>" +
+                "<td class=\"dataRow\">X: " + x + "\nY: " + y + "\nR: " + r + "</td>" +
+                "<td class=\"dataRow hitStatus\">" + hitStatus + "</td>" +
+                "<td class=\"dataRow\">" + (executionTime) + " ms</td>" +
                 "</tr>";
     }
 }

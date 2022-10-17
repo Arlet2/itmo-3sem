@@ -1,7 +1,6 @@
 const coefficientX = $('canvas.map')[0].width/2.32;
 const coefficientY = $('canvas.map')[0].height/2.32;
 const circleSize = $('canvas.map')[0].width/100;
-const MAP_MODE = 1;
 
 loadCircles();
 
@@ -32,14 +31,14 @@ function getMouseCoordinates(canvas, event, r) {
     y *= (r/coefficientY);
 
     return {
-    "x": x,
-    "y": y
+    "x": x.toFixed(2),
+    "y": y.toFixed(2)
     };
 }
 
 function sendCoordinatesByMap(x, y) {
     let coordinates = createCoordinates(x, y, $('input[name="r"]:checked').val());
-    ajaxSend(coordinates, MAP_MODE, setResponseOnMap);
+    ajaxSend(coordinates, setResponseOnMap);
 }
 
 function setResponseOnMap(response, coordinates) {
@@ -48,7 +47,9 @@ function setResponseOnMap(response, coordinates) {
 
     let color;
 
-    if (response=="true")
+    setResponseOnTable(response, coordinates);
+
+    if ($('td.dataRow.hitStatus')[0].innerHTML == "hit!")
         color = "green";
     else
         color = "red";

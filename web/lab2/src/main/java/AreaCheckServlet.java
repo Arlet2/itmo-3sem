@@ -18,7 +18,7 @@ public class AreaCheckServlet extends HttpServlet {
     private final CoordinatesValidator validator = new CoordinatesValidator();
     private final HitChecker hitChecker = new HitChecker();
 
-    private final RowsCreator rowsCreator = new RowsCreator(validator, hitChecker);;
+    private final RowsCreator rowsCreator = new RowsCreator(validator, hitChecker);
 
     @Override
     public void init() throws ServletException {
@@ -33,17 +33,10 @@ public class AreaCheckServlet extends HttpServlet {
         String x = req.getParameter("x");
         String y = req.getParameter("y");
         String r = req.getParameter("r");
-        int mode = Integer.parseInt(
-                Optional.ofNullable(req.getParameter("mode")).orElse("0")
-        );
 
-        if (mode == 0) {
-            Row row = rowsCreator.createRow(x, y, r);
+        Row row = rowsCreator.createRow(x, y, r);
 
-            DataSaver.saveData(req.getSession(), row);
-            getServletContext().getRequestDispatcher("/table.jsp").forward(req, resp);
-        } else if (mode == 1) {
-            resp.getWriter().write(hitChecker.isHit(x, y, r)+"");
-        }
+        DataSaver.saveData(req.getSession(), row);
+        getServletContext().getRequestDispatcher("/table.jsp").forward(req, resp);
     }
 }

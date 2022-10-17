@@ -1,12 +1,11 @@
-function ajaxSend(coordinates, mode, handleRequest) {
+function ajaxSend(coordinates, handleRequest) {
     $.ajax({
             type: "GET",
             url: "controller",
             data: {
                 'x': coordinates.x,
                 'y': coordinates.y,
-                'r': coordinates.r,
-                'mode': mode
+                'r': coordinates.r
             },
             cache: false,
             dataType: "html",

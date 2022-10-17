@@ -1,5 +1,3 @@
-const TABLE_MODE = 0;
-
 $('input[name="submitButton"]').on('click', function (event) {
     console.log("CLICK");
     sendCoordinatesByForm();
@@ -36,7 +34,7 @@ function sendCoordinatesByForm() {
         $('input[name="r"]:checked').val()
     );
 
-    ajaxSend(coordinates, TABLE_MODE, setResponseOnTable);
+    ajaxSend(coordinates, setResponseOnTable);
 }
 
 function isXEmpty(x) {
