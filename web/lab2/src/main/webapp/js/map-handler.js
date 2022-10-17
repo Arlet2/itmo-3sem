@@ -3,6 +3,8 @@ const coefficientY = $('canvas.map')[0].height/2.32;
 const circleSize = $('canvas.map')[0].width/100;
 const MAP_MODE = 1;
 
+loadCircles();
+
 $('canvas.map').on('click', function(event) {
     let canvas = $('canvas.map')[0];
 
@@ -44,8 +46,6 @@ function setResponseOnMap(response, coordinates) {
     coordinates.x *= (coefficientX/coordinates.r);
     coordinates.y *= -(coefficientY/coordinates.r);
 
-    console.log(response);
-
     let color;
 
     if (response=="true")
@@ -56,6 +56,7 @@ function setResponseOnMap(response, coordinates) {
     let canvas = $('canvas.map')[0];
     let ctx = canvas.getContext('2d');
     drawCircle(ctx, coordinates.x+canvas.width/2, coordinates.y+canvas.height/2, circleSize, color);
+    saveCircle(coordinates.x+canvas.width/2, coordinates.y+canvas.height/2, circleSize, color);
 }
 
 function drawCircle(context, x, y, radius, color) {
@@ -65,5 +66,38 @@ function drawCircle(context, x, y, radius, color) {
     context.stroke();
 
     context.fill();
+}
+
+function saveCircle(x, y, radius, color) {
+    let circle = {
+        "x": x,
+        "y": y,
+        "radius": radius,
+        "color": color
+    };
+    let circles = JSON.parse(localStorage.getItem("circles"));
+
+    if (circles == null)
+        circles = [];
+
+    circles.push(circle);
+
+    localStorage.setItem("circles", JSON.stringify(circles));
+}
+
+function loadCircles() {
+    circlesStorage = localStorage.getItem("circles");
+
+    circles = JSON.parse(circlesStorage);
+
+    if (circles == null)
+        return;
+
+    let ctx = $('canvas.map')[0].getContext("2d");
+
+    for (let circle of circles) {
+        drawCircle(ctx, circle.x, circle.y, circle.radius, circle.color);
+    }
+
 }
 
