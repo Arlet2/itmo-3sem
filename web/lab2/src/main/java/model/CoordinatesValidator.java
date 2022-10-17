@@ -26,6 +26,7 @@ public class CoordinatesValidator {
     private void tryToCastYToType(String y) {
         Float.parseFloat(y);
     }
+
     private void tryToCastRToType(String r) {
         Integer.parseInt(r);
     }

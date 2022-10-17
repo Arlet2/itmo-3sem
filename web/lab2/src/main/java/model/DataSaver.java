@@ -28,7 +28,7 @@ public class DataSaver {
             rows = new ArrayList<>();
 
         if (rows.size() >= MAX_ROWS)
-            rows.remove(MAX_ROWS-1);
+            rows.remove(MAX_ROWS - 1);
         rows.add(0, row);
 
         session.setAttribute(SAVING_ATTRIBUTE_NAME, rows);

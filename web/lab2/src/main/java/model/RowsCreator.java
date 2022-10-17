@@ -3,7 +3,6 @@ package model;
 import data.Row;
 
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -36,6 +35,6 @@ public class RowsCreator {
 
         return new Row(time, x, y, r, result,
                 new DecimalFormat("#0.00")
-                        .format((endTime-startTime)*Math.pow(10, -6))+"");
+                        .format((endTime - startTime) * Math.pow(10, -6)) + "");
     }
 }
