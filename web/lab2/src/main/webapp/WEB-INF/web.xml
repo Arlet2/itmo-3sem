@@ -14,5 +14,4 @@
         <servlet-name>AreaCheckServlet</servlet-name>
         <servlet-class>AreaCheckServlet</servlet-class>
     </servlet>
-
 </web-app>
