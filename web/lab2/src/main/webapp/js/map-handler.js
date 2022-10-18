@@ -2,7 +2,28 @@ const coefficientX = $('canvas.map')[0].width/2.32;
 const coefficientY = $('canvas.map')[0].height/2.32;
 const circleSize = $('canvas.map')[0].width/100;
 
-loadCircles();
+loadPoints();
+
+function loadPoints() {
+    let canvas = $('canvas.map')[0];
+    let ctx = canvas.getContext('2d');
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    let points = parseHTML();
+
+    if (points.length == 0)
+        return;
+
+    console.log(points[0].x, points[0].y, points[0].r, points[0].color);
+
+    for (let point of points) {
+        drawCircle(ctx, point.x*coefficientX/point.r+canvas.width/2,
+                        -point.y*coefficientY/point.r+canvas.height/2,
+                        circleSize, point.color);
+    }
+
+}
 
 $('canvas.map').on('click', function(event) {
     let canvas = $('canvas.map')[0];
@@ -31,8 +52,8 @@ function getMouseCoordinates(canvas, event, r) {
     y *= (r/coefficientY);
 
     return {
-    "x": x.toFixed(2),
-    "y": y.toFixed(2)
+        "x": x.toFixed(2),
+        "y": y.toFixed(2)
     };
 }
 
@@ -49,15 +70,7 @@ function setResponseOnMap(response, coordinates) {
 
     setResponseOnTable(response, coordinates);
 
-    if ($('td.dataRow.hitStatus')[0].innerHTML == "hit!")
-        color = "green";
-    else
-        color = "red";
-
-    let canvas = $('canvas.map')[0];
-    let ctx = canvas.getContext('2d');
-    drawCircle(ctx, coordinates.x+canvas.width/2, coordinates.y+canvas.height/2, circleSize, color);
-    saveCircle(coordinates.x+canvas.width/2, coordinates.y+canvas.height/2, circleSize, color);
+    loadPoints();
 }
 
 function drawCircle(context, x, y, radius, color) {
@@ -69,36 +82,31 @@ function drawCircle(context, x, y, radius, color) {
     context.fill();
 }
 
-function saveCircle(x, y, radius, color) {
-    let circle = {
-        "x": x,
-        "y": y,
-        "radius": radius,
-        "color": color
-    };
-    let circles = JSON.parse(localStorage.getItem("circles"));
+function parseHTML() {
+    let coordinates = $('td.dataRow.coordinates');
+    let hitStatuses = $('td.dataRow.hitStatus');
 
-    if (circles == null)
-        circles = [];
+    let points = [];
 
-    circles.push(circle);
-
-    localStorage.setItem("circles", JSON.stringify(circles));
-}
-
-function loadCircles() {
-    circlesStorage = localStorage.getItem("circles");
-
-    circles = JSON.parse(circlesStorage);
-
-    if (circles == null)
-        return;
-
-    let ctx = $('canvas.map')[0].getContext("2d");
-
-    for (let circle of circles) {
-        drawCircle(ctx, circle.x, circle.y, circle.radius, circle.color);
+    for (let i = 0; i < coordinates.length;i++) {
+        points.push(createPoint(coordinates[i].innerHTML, hitStatuses[i].innerHTML));
     }
 
+    return points;
+}
+
+function createPoint(coordinatesText, hitStatusText) {
+    let color;
+    if (hitStatusText == "hit!")
+        color = "green";
+    else
+        color = "red";
+
+    return {
+            "x": coordinatesText.match(/(?<=X: )[-\d.*,]*/)[0],
+            "y": coordinatesText.match(/(?<=Y: )[-\d.*,]*/)[0],
+            "r": coordinatesText.match(/(?<=R: )[\d.*,]*/)[0],
+            "color": color
+    };
 }
 

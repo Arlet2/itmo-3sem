@@ -113,9 +113,6 @@
                             <tr>
                                 <input type="button" name="submitButton" value="Отправить">
                             </tr>
-                            <tr>
-                                <input type="button" name="clearButton" value="Очистить">
-                            </tr>
                         </table>
                     </form>
                 </td>
