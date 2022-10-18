@@ -13,7 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Лабораторная работа №2</title>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="js/jquery-3.6.1.min.js"></script>
 
     <link rel="stylesheet" href="style.css">
 </head>
