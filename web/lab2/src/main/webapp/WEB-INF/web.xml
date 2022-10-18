@@ -15,8 +15,4 @@
         <servlet-class>AreaCheckServlet</servlet-class>
     </servlet>
 
-    <servlet-mapping>
-        <servlet-name>AreaCheckServlet</servlet-name>
-        <url-pattern>/area_checker</url-pattern>
-    </servlet-mapping>
 </web-app>
