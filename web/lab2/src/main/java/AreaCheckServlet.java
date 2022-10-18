@@ -17,7 +17,7 @@ public class AreaCheckServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         validator
-                .setMinX(2).setMaxX(2)
+                .setMinX(-2).setMaxX(2)
                 .setMinY(-3).setMaxY(3)
                 .setMinR(1).setMaxR(5);
     }

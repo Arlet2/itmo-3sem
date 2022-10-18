@@ -23,7 +23,7 @@ public class CoordinatesValidator {
         }
 
         if(isXCorrect(x) && isYCorrect(y) && isRCorrect(r))
-            return Optional.of(new Coordinates(x, y, r));
+            return Optional.ofNullable(new Coordinates(x, y, r));
         return Optional.empty();
     }
 

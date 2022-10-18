@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Optional;
 
 @WebServlet("/controller")
 public class ControllerServlet extends HttpServlet {
@@ -13,7 +12,7 @@ public class ControllerServlet extends HttpServlet {
         if (isCoordinates(req))
             getServletContext().getNamedDispatcher("AreaCheckServlet").forward(req, resp);
         else {
-            resp.sendRedirect(req.getContextPath()+"/");
+            getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
         }
     }
 
@@ -22,8 +21,8 @@ public class ControllerServlet extends HttpServlet {
         Object y = req.getParameter("y");
         Object r = req.getParameter("r");
 
-        return x == null &&
-                y == null &&
-                r == null;
+        return x != null &&
+                y != null &&
+                r != null;
     }
 }
