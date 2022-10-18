@@ -22,8 +22,8 @@ public class ControllerServlet extends HttpServlet {
         Object y = req.getParameter("y");
         Object r = req.getParameter("r");
 
-        return Optional.ofNullable(x).isPresent() &&
-                Optional.ofNullable(y).isPresent() &&
-                Optional.ofNullable(r).isPresent();
+        return x == null &&
+                y == null &&
+                r == null;
     }
 }
