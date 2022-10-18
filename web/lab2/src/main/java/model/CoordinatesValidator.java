@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Optional;
+
 public class CoordinatesValidator {
     private float minX;
     private float maxX;
@@ -8,35 +10,21 @@ public class CoordinatesValidator {
     private int minR;
     private int maxR;
 
-    public boolean isCoordinatesHaveCorrectTypes(String x, String y, String r) {
+    public Optional<Coordinates> convertTextToCoordinates(String textX, String textY, String textR) {
+        float x;
+        float y;
+        int r;
         try {
-            tryToCastXToType(x);
-            tryToCastYToType(y);
-            tryToCastRToType(r);
-        } catch (NumberFormatException | NullPointerException e) {
-            return false;
+            x = Float.parseFloat(textX);
+            y = Float.parseFloat(textY);
+            r = Integer.parseInt(textR);
+        } catch (NumberFormatException e) {
+            return Optional.empty();
         }
-        return true;
-    }
 
-    private void tryToCastXToType(String x) {
-        Float.parseFloat(x);
-    }
-
-    private void tryToCastYToType(String y) {
-        Float.parseFloat(y);
-    }
-
-    private void tryToCastRToType(String r) {
-        Integer.parseInt(r);
-    }
-
-    public boolean isCoordinatesCorrect(String textX, String textY, String textR) {
-        float x = Float.parseFloat(textX);
-        float y = Float.parseFloat(textY);
-        int r = Integer.parseInt(textR);
-
-        return isXCorrect(x) && isYCorrect(y) && isRCorrect(r);
+        if(isXCorrect(x) && isYCorrect(y) && isRCorrect(r))
+            return Optional.of(new Coordinates(x, y, r));
+        return Optional.empty();
     }
 
     private boolean isXCorrect(float x) {

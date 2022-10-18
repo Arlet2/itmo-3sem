@@ -1,14 +1,12 @@
 import data.Row;
-import model.CoordinatesValidator;
-import model.DataSaver;
-import model.HitChecker;
-import model.RowsCreator;
+import model.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Optional;
 
 public class AreaCheckServlet extends HttpServlet {
     private final CoordinatesValidator validator = new CoordinatesValidator();
@@ -30,7 +28,15 @@ public class AreaCheckServlet extends HttpServlet {
         String y = req.getParameter("y");
         String r = req.getParameter("r");
 
-        Row row = rowsCreator.createRow(x, y, r);
+        Row row;
+        Optional<Coordinates> coordinates = validator.convertTextToCoordinates(x, y, r);
+
+        if (coordinates.isEmpty()) {
+            row = rowsCreator.createEmptyRow(x, y, r);
+        } else {
+            row = rowsCreator.createRow(coordinates.get());
+        }
+
 
         DataSaver.saveData(req.getSession(), row);
         getServletContext().getRequestDispatcher("/table.jsp").forward(req, resp);

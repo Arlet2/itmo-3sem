@@ -16,25 +16,29 @@ public class RowsCreator {
         this.hitChecker = hitChecker;
     }
 
-    public Row createRow(String x, String y, String r) {
+    public Row createRow(Coordinates coordinates) {
         long startTime = System.nanoTime();
         String result;
         String time = ZonedDateTime.now()
                 .format(DateTimeFormatter
                         .ofPattern("dd.MM.yyyy HH:mm:ss - VV O"));
-        if (!validator.isCoordinatesHaveCorrectTypes(x, y, r) && !validator.isCoordinatesCorrect(x, y, r)) {
-            result = "Incorrect data";
-        } else {
-            if (hitChecker.isHit(x, y, r))
-                result = "hit!";
-            else
-                result = "no hit...";
-        }
+
+        if (hitChecker.isHit(coordinates.getX(), coordinates.getY(), coordinates.getR()))
+            result = "hit!";
+        else
+            result = "no hit...";
 
         long endTime = System.nanoTime();
 
-        return new Row(time, x, y, r, result,
+        return new Row(time, coordinates.getX()+"", coordinates.getY()+"", coordinates.getR()+"", result,
                 new DecimalFormat("#0.00")
                         .format((endTime - startTime) * Math.pow(10, -6)) + "");
+    }
+
+    public Row createEmptyRow(String x, String y, String r) {
+        String time = ZonedDateTime.now()
+                .format(DateTimeFormatter
+                        .ofPattern("dd.MM.yyyy HH:mm:ss - VV O"));
+        return new Row(time, x, y, r, "Incorrect data", "0");
     }
 }
