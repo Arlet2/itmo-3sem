@@ -41,7 +41,7 @@ public class HeaderFilter implements Filter {
             headersMap.replace(headerName, headersMap.get(headerName)+1);
     }
 
-    private void printMap() {
+    private synchronized void printMap() {
         System.out.println("NEW REQUEST!");
         headersMap.forEach((key, value) -> {
             System.out.println(key+": "+value);
