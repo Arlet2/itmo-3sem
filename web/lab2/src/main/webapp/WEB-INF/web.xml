@@ -7,11 +7,11 @@
          version="4.0">
     <servlet>
         <servlet-name>ControllerServlet</servlet-name>
-        <servlet-class>ControllerServlet</servlet-class>
+        <servlet-class>servlets.ControllerServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>AreaCheckServlet</servlet-name>
-        <servlet-class>AreaCheckServlet</servlet-class>
+        <servlet-class>servlets.AreaCheckServlet</servlet-class>
     </servlet>
 </web-app>
