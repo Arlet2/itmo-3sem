@@ -12,7 +12,7 @@ public class ControllerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (isCoordinates(req))
-            getServletContext().getNamedDispatcher("servlets.AreaCheckServlet").forward(req, resp);
+            getServletContext().getNamedDispatcher("AreaCheckServlet").forward(req, resp);
         else {
             getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
         }

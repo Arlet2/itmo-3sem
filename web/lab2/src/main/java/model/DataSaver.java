@@ -9,8 +9,8 @@ import java.util.Optional;
 
 public class DataSaver {
 
-    public final int MAX_ROWS = 10;
-    private final String SAVING_ATTRIBUTE_NAME = "rows";
+    public static final int MAX_ROWS = 10;
+    private static final String SAVING_ATTRIBUTE_NAME = "rows";
 
     public synchronized void saveData(HttpSession session, Row row) {
         List<Row> rows;

@@ -24,6 +24,8 @@ public class AreaCheckServlet extends HttpServlet {
                 .setMinX(-2).setMaxX(2)
                 .setMinY(-3).setMaxY(3)
                 .setMinR(1).setMaxR(5);
+
+        getServletContext().setAttribute("dataSaver", dataSaver);
     }
 
     @Override
@@ -43,6 +45,7 @@ public class AreaCheckServlet extends HttpServlet {
 
 
         dataSaver.saveData(req.getSession(), row);
+
         getServletContext().getRequestDispatcher("/table.jsp").forward(req, resp);
     }
 }

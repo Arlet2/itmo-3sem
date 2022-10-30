@@ -132,10 +132,13 @@
             <th>Время выполнения скрипта</td>
             <tfoot id="receivingData">
             <%
-                List<Row> rows = DataSaver.loadData(session);
-                if (Optional.ofNullable(rows).isPresent()) {
-                    for (Row row : rows)
-                        out.println(row.getHTMLRow());
+                DataSaver dataSaver = (DataSaver) getServletContext().getAttribute("dataSaver");
+                if (dataSaver != null) {
+                    List<Row> rows = dataSaver.loadData(session);
+                    if (Optional.ofNullable(rows).isPresent()) {
+                        for (Row row : rows)
+                            out.println(row.getHTMLRow());
+                    }
                 }
             %>
             </tfoot>

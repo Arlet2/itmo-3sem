@@ -11,7 +11,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    List<Row> rows = DataSaver.loadData(session);
+    DataSaver dataSaver = (DataSaver) getServletContext().getAttribute("dataSaver");
+    List<Row> rows = dataSaver.loadData(session);
     if (Optional.ofNullable(rows).isPresent()) {
         for (Row row : rows)
             out.println(row.getHTMLRow());
