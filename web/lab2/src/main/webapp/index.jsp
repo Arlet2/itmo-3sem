@@ -151,5 +151,4 @@
 <script src="js/input-handler.js"></script>
 <script src="js/map-handler.js"></script>
 <script src="js/form-handler.js"></script>
-<script src="js/map-clear.js"></script>
 </html>
