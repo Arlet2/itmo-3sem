@@ -28,6 +28,8 @@ public class HeaderFilter implements Filter {
         while (headers.hasMoreElements())
             countHeader(headers.nextElement());
 
+        printMap();
+
         chain.doFilter(request, response);
     }
 
@@ -36,5 +38,12 @@ public class HeaderFilter implements Filter {
             headersMap.put(headerName, 1L);
         else
             headersMap.replace(headerName, headersMap.get(headerName)+1);
+    }
+
+    private void printMap() {
+        System.out.println("NEW REQUEST!");
+        headersMap.forEach((key, value) -> {
+            System.out.println(key+": "+value);
+        });
     }
 }
