@@ -14,4 +14,14 @@
         <servlet-name>AreaCheckServlet</servlet-name>
         <servlet-class>servlets.AreaCheckServlet</servlet-class>
     </servlet>
+
+    <filter>
+        <filter-name>HeaderFilter</filter-name>
+        <filter-class>filters.HeaderFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>HeaderFilter</filter-name>
+        <servlet-name>ControllerServlet</servlet-name>
+    </filter-mapping>
 </web-app>
