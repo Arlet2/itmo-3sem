@@ -9,14 +9,10 @@ import java.util.Optional;
 
 public class DataSaver {
 
-    public static final int MAX_ROWS = 10;
-    private static final String SAVING_ATTRIBUTE_NAME = "rows";
+    public final int MAX_ROWS = 10;
+    private final String SAVING_ATTRIBUTE_NAME = "rows";
 
-    private DataSaver() {
-
-    }
-
-    public static synchronized void saveData(HttpSession session, Row row) {
+    public synchronized void saveData(HttpSession session, Row row) {
         List<Row> rows;
         try {
             rows = (List<Row>) session.getAttribute(SAVING_ATTRIBUTE_NAME);
@@ -34,7 +30,7 @@ public class DataSaver {
         session.setAttribute(SAVING_ATTRIBUTE_NAME, rows);
     }
 
-    public static synchronized List<Row> loadData(HttpSession session) {
+    public synchronized List<Row> loadData(HttpSession session) {
         return (List<Row>) session.getAttribute(SAVING_ATTRIBUTE_NAME);
     }
 }

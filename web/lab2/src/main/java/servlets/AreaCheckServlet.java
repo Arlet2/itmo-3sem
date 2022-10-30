@@ -16,6 +16,8 @@ public class AreaCheckServlet extends HttpServlet {
 
     private final RowsCreator rowsCreator = new RowsCreator(validator, hitChecker);
 
+    private final DataSaver dataSaver = new DataSaver();
+
     @Override
     public void init() throws ServletException {
         validator
@@ -40,7 +42,7 @@ public class AreaCheckServlet extends HttpServlet {
         }
 
 
-        DataSaver.saveData(req.getSession(), row);
+        dataSaver.saveData(req.getSession(), row);
         getServletContext().getRequestDispatcher("/table.jsp").forward(req, resp);
     }
 }
