@@ -1,3 +1,5 @@
+package servlets;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +12,7 @@ public class ControllerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (isCoordinates(req))
-            getServletContext().getNamedDispatcher("AreaCheckServlet").forward(req, resp);
+            getServletContext().getNamedDispatcher("servlets.AreaCheckServlet").forward(req, resp);
         else {
             getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
         }
