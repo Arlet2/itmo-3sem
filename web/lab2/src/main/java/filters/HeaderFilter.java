@@ -22,7 +22,8 @@ public class HeaderFilter implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws ServletException, IOException {
         Enumeration<String> headers = ((HttpServletRequest) request).getHeaderNames();
 
         while (headers.hasMoreElements())
