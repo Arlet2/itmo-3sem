@@ -9,11 +9,11 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebFilter(filterName = "HeaderFilter")
 public class HeaderFilter implements Filter {
     private Map<String, Long> headersMap;
 
     public void init(FilterConfig config) throws ServletException {
+        System.out.println("I'm alive!");
         headersMap = new HashMap<>();
     }
 
