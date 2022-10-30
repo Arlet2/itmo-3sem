@@ -55,4 +55,5 @@ function clearSpacesAndChangeCommaToPoint(sendingValue) {
 
 function setResponseOnTable(response, coordinates) {
     document.getElementById("receivingData").innerHTML = response;
+    loadPoints();
 }
