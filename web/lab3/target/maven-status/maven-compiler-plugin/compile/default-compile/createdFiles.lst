@@ -1,1 +1,4 @@
-Test.class
+RadiusValidator.class
+InvalidRangeException.class
+YCoordinateValidator.class
+AbstractValidator.class
