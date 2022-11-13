@@ -1,9 +1,18 @@
-package beans;
+package tableHandlers;
 
+import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Generated;
+
+import java.io.Serializable;
 
 @Data
-public class Row {
+@Entity
+@Table(name ="points")
+public class Row implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private long id;
     private String date;
     private int x;
     private float y;
@@ -11,4 +20,7 @@ public class Row {
     private boolean isHit;
     private long scriptTime;
 
+    public Row() {
+
+    }
 }
