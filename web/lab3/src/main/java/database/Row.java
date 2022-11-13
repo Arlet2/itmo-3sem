@@ -1,4 +1,4 @@
-package tableHandlers;
+package database;
 
 import jakarta.persistence.*;
 import lombok.Data;
