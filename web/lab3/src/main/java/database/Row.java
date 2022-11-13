@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Table(name ="points")
 public class Row implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String date;
     private int x;
