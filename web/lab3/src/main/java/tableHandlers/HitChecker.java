@@ -1,4 +1,4 @@
-package beans;
+package tableHandlers;
 
 public class HitChecker {
     public boolean isHit(int x, float y, float r) {
