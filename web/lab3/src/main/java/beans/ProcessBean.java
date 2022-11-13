@@ -1,12 +1,15 @@
-import beans.CoordinatesBean;
-import beans.HitChecker;
-import beans.Row;
+package beans;
+
+import tableHandlers.HitChecker;
+import tableHandlers.Row;
 import lombok.Data;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Data
 @ManagedBean(name="process")
@@ -16,6 +19,9 @@ public class ProcessBean implements Serializable {
     @ManagedProperty(value="#{coordinates}")
     private CoordinatesBean coordinatesBean;
 
+    @ManagedProperty(value="#{database}")
+    private DatabaseBean databaseBean;
+
     private HitChecker hitChecker = new HitChecker();
 
     public ProcessBean() {
@@ -23,8 +29,6 @@ public class ProcessBean implements Serializable {
     }
 
     public void processNewValue() {
-        System.out.println(coordinatesBean.getCoordinateX());
-        /*
         long startTime = System.nanoTime();
 
         Row row = createRow();
@@ -34,12 +38,9 @@ public class ProcessBean implements Serializable {
         row.setScriptTime((long)((endTime - startTime) * Math.pow(10, -6)));
 
         System.out.println(row);
-
-         */
     }
 
     private Row createRow() {
-        /*
         Row row = new Row();
         row.setDate(
                 ZonedDateTime.now()
@@ -53,8 +54,5 @@ public class ProcessBean implements Serializable {
         row.setHit(hitChecker.isHit(row.getX(), row.getY(), row.getR()));
 
         return row;
-
-         */
-        return null;
     }
 }
