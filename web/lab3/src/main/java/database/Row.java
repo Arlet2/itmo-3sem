@@ -18,7 +18,7 @@ public class Row implements Serializable {
     private float y;
     private float r;
     private boolean isHit;
-    private long scriptTime;
+    private String scriptTime;
 
     public Row() {
 
