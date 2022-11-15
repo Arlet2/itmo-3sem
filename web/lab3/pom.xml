@@ -70,7 +70,7 @@
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>lab2</finalName>
+        <finalName>lab3</finalName>
     </build>
 
 </project>
