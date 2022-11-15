@@ -12,75 +12,99 @@
 <h:head>
     <title>Лабораторная №3</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css"/>
-    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/main-style.css"/>
 </h:head>
 <h:body>
-    <h:form id="coordinatesForm" class="row g-3">
-        <div id="buttonsX" class="col-md-6">
-            <h:commandButton value="-5" class="btn btn-outline-dark" type="button"
-                             action="#{coordinates.setCoordinateX(-5)}">
-                <f:ajax render="currentX"/>
-            </h:commandButton>
-            <h:commandButton value="-4" class="btn btn-outline-dark" type="button"
-                             action="#{coordinates.setCoordinateX(-4)}">
-                <f:ajax render="currentX"/>
-            </h:commandButton>
-            <h:commandButton value="-3" class="btn btn-outline-dark" type="button"
-                             action="#{coordinates.setCoordinateX(-3)}">
-                <f:ajax render="currentX"/>
-            </h:commandButton>
-            <h:commandButton value="-2" class="btn btn-outline-dark" type="button"
-                             action="#{coordinates.setCoordinateX(-2)}">
-                <f:ajax render="currentX"/>
-            </h:commandButton>
-            <h:commandButton value="-1" class="btn btn-outline-dark" type="button"
-                             action="#{coordinates.setCoordinateX(-1)}">
-                <f:ajax render="currentX"/>
-            </h:commandButton>
-            <h:commandButton value="0" class="btn btn-outline-dark" type="button"
-                             action="#{coordinates.setCoordinateX(0)}">
-                <f:ajax render="currentX"/>
-            </h:commandButton>
-            <h:commandButton value="1" class="btn btn-outline-dark" type="button"
-                             action="#{coordinates.setCoordinateX(1)}">
-                <f:ajax render="currentX"/>
-            </h:commandButton>
-            <h:commandButton value="2" class="btn btn-outline-dark" type="button"
-                             action="#{coordinates.setCoordinateX(2)}">
-                <f:ajax render="currentX"/>
-            </h:commandButton>
-            <h:commandButton value="3" class="btn btn-outline-dark" type="button"
-                             action="#{coordinates.setCoordinateX(3)}">
-                <f:ajax render="currentX"/>
-            </h:commandButton>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h:form id="coordinatesForm">
+                    <div>
+                        <h:outputText id="currentX" value="Current X value: #{coordinates.coordinateX}"/>
+                    </div>
+                    <div id="buttonsX">
+                        <h:commandButton value="-5" class="btn btn-outline-dark" type="button"
+                                         action="#{coordinates.setCoordinateX(-5)}">
+                            <f:ajax render="currentX"/>
+                        </h:commandButton>
+                        <h:commandButton value="-4" class="btn btn-outline-dark" type="button"
+                                         action="#{coordinates.setCoordinateX(-4)}">
+                            <f:ajax render="currentX"/>
+                        </h:commandButton>
+                        <h:commandButton value="-3" class="btn btn-outline-dark" type="button"
+                                         action="#{coordinates.setCoordinateX(-3)}">
+                            <f:ajax render="currentX"/>
+                        </h:commandButton>
+                        <h:commandButton value="-2" class="btn btn-outline-dark" type="button"
+                                         action="#{coordinates.setCoordinateX(-2)}">
+                            <f:ajax render="currentX"/>
+                        </h:commandButton>
+                        <h:commandButton value="-1" class="btn btn-outline-dark" type="button"
+                                         action="#{coordinates.setCoordinateX(-1)}">
+                            <f:ajax render="currentX"/>
+                        </h:commandButton>
+                        <h:commandButton value="0" class="btn btn-outline-dark" type="button"
+                                         action="#{coordinates.setCoordinateX(0)}">
+                            <f:ajax render="currentX"/>
+                        </h:commandButton>
+                        <h:commandButton value="1" class="btn btn-outline-dark" type="button"
+                                         action="#{coordinates.setCoordinateX(1)}">
+                            <f:ajax render="currentX"/>
+                        </h:commandButton>
+                        <h:commandButton value="2" class="btn btn-outline-dark" type="button"
+                                         action="#{coordinates.setCoordinateX(2)}">
+                            <f:ajax render="currentX"/>
+                        </h:commandButton>
+                        <h:commandButton value="3" class="btn btn-outline-dark" type="button"
+                                         action="#{coordinates.setCoordinateX(3)}">
+                            <f:ajax render="currentX"/>
+                        </h:commandButton>
+                    </div>
+                    <div id="inputTextY">
+                        <label for="inputTextY">Y:</label>
+                        <h:inputText class="form-controll" id="inputY"
+                                     a:placeholder="-5..5"
+                                     required="true"
+                                     value="#{coordinates.coordinateY}"
+                                     requiredMessage="Это поле обязательно">
+                            <f:converter converterId="NumberConverter"/>
+                            <f:validator validatorId="YCoordinateValidator"/>
+                        </h:inputText>
+                        <h:message for="inputY" id="yErrors" style="color:red"/>
+                    </div>
+                    <div id="sliderRadius">
+                        <label for="sliderRadius">R:</label>
+                        <h:inputText id="radius" value="#{coordinates.radius}"/>
+                        <p:slider for="radius" minValue="1" maxValue="4" step="0.25" style="width:10em; margin: 0.5em"
+                                  onSlideEnd="loadPoints()"/>
+                    </div>
+                    <h:commandButton value="CLICK" action="#{process.processNewValue()}" class="btn btn-outline-dark">
+                        <f:ajax execute="coordinatesForm"
+                                render="yErrors table"
+                                onevent="ajaxGetPoints"/>
+                    </h:commandButton>
+                </h:form>
+            </div>
+
+            <div class="col">
+                <div>
+                    <canvas class="map" width="700" height="700"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="700" height="700" fill="none" viewBox="0 0 702 700">
+                        <path stroke="#000" d="M350 0v700M0 350h700"/>
+                        <path fill="#65F462" fill-opacity=".5" d="M350 100h250v250H350z"/>
+                        <path fill="#ACF4AB"
+                              d="m349.083 349.083-249.268.114L349.197 99.815l-.114 249.268Zm.035.917v125c-69.035 0-125-55.964-125-125h125c118 0 69.036 0 0 0Z"/>
+                        <path stroke="#000" d="M367 19 351 2l-18 17m347 318 21 12-21 17"/>
+                    </svg>
+                </div>
+            </div>
         </div>
-        <div class="col-12">
-            <h:outputText id="currentX" value="Current value: #{coordinates.coordinateX}"/>
+        <div class="row m-2 text-center">
+            <h:form>
+                <h:commandLink value="Вернуться обратно" action="toStart"/>
+            </h:form>
         </div>
-        <div id="inputTextY" class="col-12">
-            <label for="inputTextY">Y:</label>
-            <h:inputText class="form-controll" id="inputY"
-                         a:placeholder="-5..5"
-                         required="true"
-                         value="#{coordinates.coordinateY}"
-                         requiredMessage="Это поле обязательно">
-                <f:converter converterId="NumberConverter"/>
-                <f:validator validatorId="YCoordinateValidator"/>
-            </h:inputText>
-            <h:message for="inputY" id="yErrors" style="color:red"/>
-        </div>
-        <div id="sliderRadius" class="col-12">
-            <label for="sliderRadius">R:</label>
-            <h:inputText id="radius" value="#{coordinates.radius}"/>
-            <p:slider for="radius" minValue="1" maxValue="4" step="0.25" style="width:10em" onSlideEnd="loadPoints()"/>
-        </div>
-        <h:commandButton value="CLICK" action="#{process.processNewValue()}">
-            <f:ajax execute="coordinatesForm"
-                    render="yErrors table"
-                    onevent="ajaxGetPoints"
-            />
-        </h:commandButton>
-    </h:form>
+    </div>
 
     <h:form id="hiddenForm">
         <h:inputHidden id="xValue" value="#{coordinates.coordinateX}"/>
@@ -92,14 +116,13 @@
         </h:commandButton>
     </h:form>
 
-    <h:form>
-        <h:commandLink value="Вернуться обратно" action="toStart"/>
-    </h:form>
-
     <h:dataTable id="table"
-                 styleClass="table-light table-striped"
-                 captionStyle="table-light table-striped"
-                 captionClass="table-light table-striped"
+                 styleClass="table-light table-striped align-items-center"
+                 captionStyle="table-light table-striped align-content-center"
+                 captionClass="table-light table-striped align-content-center"
+                 columnClasses="table-light table-striped align-content-center"
+                 headerClass="table-light table-striped align-content-center"
+                 footerClass="table-light table-striped align-content-center"
 
                  value="#{process.pointsBean.pointsCollection}" var="point">
         <h:column>
@@ -127,16 +150,6 @@
             #{point.scriptTime} мс
         </h:column>
     </h:dataTable>
-
-    <div>
-        <canvas class="map" width="700" height="700"/>
-        <svg xmlns="http://www.w3.org/2000/svg" width="700" height="700" fill="none" viewBox="0 0 702 700">
-            <path stroke="#000" d="M350 0v700M0 350h700"/>
-            <path fill="#65F462" fill-opacity=".5" d="M350 100h250v250H350z"/>
-            <path fill="#ACF4AB" d="m349.083 349.083-249.268.114L349.197 99.815l-.114 249.268Zm.035.917v125c-69.035 0-125-55.964-125-125h125c118 0 69.036 0 0 0Z"/>
-            <path stroke="#000" d="M367 19 351 2l-18 17m347 318 21 12-21 17"/>
-        </svg>
-    </div>
 
 </h:body>
 <script src="js/coords-sender.js"/>

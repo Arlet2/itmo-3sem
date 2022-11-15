@@ -7,18 +7,25 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Стартовая</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/start-style.css"/>
 </h:head>
 <h:body>
-    <div>
-        <p>Выполнил: Шульга Артём Игоревич P32111</p>
-        <p>Вариант №1132</p>
+    <div class="container text-center">
+        <div class="row align-content-center">
+            <h:outputText id="clock" value="#{clock.timeSignal} #{clock.time} #{clock.timeSignal}"/>
+            <p:poll interval="1" listener="#{clock.updateTime()}" update="clock"/>
+        </div>
+        <div class="row align-content-center">
+            <p>Выполнил: Шульга Артём Игоревич P32111</p>
+            <p>Вариант №1132</p>
+        </div>
+        <h:form>
+            <h:commandLink value="На основную" action="toMain"/>
+        </h:form>
     </div>
-    <div>
-        <h:outputText id="clock" value="#{clock.timeSignal} #{clock.time} #{clock.timeSignal}"/>
-        <p:poll interval="1" listener="#{clock.updateTime()}" update="clock"/>
-    </div>
-    <h:form>
-        <h:commandLink value="На основную" action="toMain"/>
-    </h:form>
+
 </h:body>
+<script src="bootstrap/js/bootstrap.js"/>
+<script src="bootstrap/js/npm.js"/>
 </html>
