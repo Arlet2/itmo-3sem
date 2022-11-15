@@ -1,26 +1,27 @@
 package beans;
 
 import tableHandlers.HitChecker;
-import tableHandlers.Row;
+import database.Row;
 import lombok.Data;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Data
-@ManagedBean(name="process")
+@ManagedBean(name="process", eager = true)
 @SessionScoped
 public class ProcessBean implements Serializable {
 
     @ManagedProperty(value="#{coordinates}")
     private CoordinatesBean coordinatesBean;
 
-    @ManagedProperty(value="#{database}")
-    private DatabaseBean databaseBean;
+    @ManagedProperty(value="#{points}")
+    private PointDAOBean pointsBean;
 
     private HitChecker hitChecker = new HitChecker();
 
@@ -35,9 +36,11 @@ public class ProcessBean implements Serializable {
 
         long endTime = System.nanoTime();
 
-        row.setScriptTime((long)((endTime - startTime) * Math.pow(10, -6)));
+        row.setScriptTime(new DecimalFormat("#0.00").format((endTime - startTime) * Math.pow(10, -6)));
 
-        System.out.println(row);
+        pointsBean.addPoint(row);
+
+        pointsBean.updatePointsCollection();
     }
 
     private Row createRow() {
