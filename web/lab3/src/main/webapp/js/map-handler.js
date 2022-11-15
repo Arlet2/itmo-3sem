@@ -54,7 +54,7 @@ $('canvas.map').on('click', function (event) {
 
     console.log("X: " + coordinates.x + " Y: " + -coordinates.y);
 
-    setFields(coordinates.x, -coordinates.y);
+    setFields(coordinates.x, -coordinates.y, r);
 });
 
 function getMouseCoordinates(canvas, event, r) {
@@ -72,9 +72,10 @@ function getMouseCoordinates(canvas, event, r) {
     };
 }
 
-function setFields(x, y) {
-    document.getElementById("hiddenForm:xValue").value = x;
+function setFields(x, y, r) {
+    document.getElementById("hiddenForm:xValue").value = Math.round(x);
     document.getElementById("hiddenForm:yValue").value = y;
+    document.getElementById("hiddenForm:rValue").value = r;
 
     document.getElementById("hiddenForm:phantomButton").click();
 }
