@@ -2,7 +2,7 @@ package tableHandlers;
 
 public class HitChecker {
     public boolean isHit(int x, float y, float r) {
-        if (x == 0 && y == 0)
+        if (x == 0 || y == 0)
             return checkAxes(x, y, r);
         if (x > 0 && y > 0)
             return checkFirstQuarter(x, y, r);
