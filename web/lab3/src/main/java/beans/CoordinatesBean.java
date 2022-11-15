@@ -7,15 +7,14 @@ import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 
 @Data
-@ManagedBean (name = "coordinates")
+@ManagedBean(name = "coordinates")
 @SessionScoped
 public class CoordinatesBean implements Serializable {
-    private int coordinateX=0;
-    private float coordinateY=0;
-    private float radius=1;
+    private int coordinateX = 0;
+    private float coordinateY = 0;
+    private float radius = 1;
 
-    public CoordinatesBean()
-    {
+    public CoordinatesBean() {
 
     }
 }

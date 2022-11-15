@@ -16,7 +16,7 @@ public class HitChecker {
     }
 
     private boolean checkAxes(int x, float y, float r) {
-        return -r <= x && x<= r && -r/2 <= y && y <= r;
+        return -r <= x && x <= r && -r / 2 <= y && y <= r;
     }
 
     private boolean checkFirstQuarter(int x, float y, float r) {
@@ -28,7 +28,7 @@ public class HitChecker {
     }
 
     private boolean checkThirdQuarter(int x, float y, float r) {
-        return r*r/4 <= x*x + y*y;
+        return r * r / 4 <= x * x + y * y;
     }
 
     private boolean checkFourthQuarter(int x, float y, float r) {

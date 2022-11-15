@@ -2,13 +2,11 @@ package database;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Generated;
-
 import java.io.Serializable;
 
 @Data
 @Entity
-@Table(name ="points")
+@Table(name = "points")
 public class Row implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

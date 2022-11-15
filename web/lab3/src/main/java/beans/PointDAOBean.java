@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Data
-@ManagedBean(name="points", eager = true)
+@ManagedBean(name = "points", eager = true)
 @ApplicationScoped
 public class PointDAOBean implements Serializable {
     private AbstractPointDAO pointDAO = new PointDAO();

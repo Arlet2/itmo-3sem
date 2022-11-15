@@ -13,14 +13,14 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Data
-@ManagedBean(name="process", eager = true)
+@ManagedBean(name = "process", eager = true)
 @SessionScoped
 public class ProcessBean implements Serializable {
 
-    @ManagedProperty(value="#{coordinates}")
+    @ManagedProperty(value = "#{coordinates}")
     private CoordinatesBean coordinatesBean;
 
-    @ManagedProperty(value="#{points}")
+    @ManagedProperty(value = "#{points}")
     private PointDAOBean pointsBean;
 
     private HitChecker hitChecker = new HitChecker();
@@ -44,8 +44,7 @@ public class ProcessBean implements Serializable {
     private Row createRow() {
         Row row = new Row();
         row.setDate(
-                ZonedDateTime.now()
-                        .format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss - VV O"))
+                ZonedDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss - VV O"))
         );
 
         row.setX(coordinatesBean.getCoordinateX());

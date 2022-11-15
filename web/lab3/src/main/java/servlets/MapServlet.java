@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name="mapServlet", urlPatterns = "map-handler")
+@WebServlet(name = "mapServlet", urlPatterns = "map-handler")
 public class MapServlet extends HttpServlet {
     private final AbstractPointDAO pointDao = new PointDAO();
 

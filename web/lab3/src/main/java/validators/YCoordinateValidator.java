@@ -9,6 +9,7 @@ import javax.faces.validator.ValidatorException;
 public class YCoordinateValidator extends AbstractValidator {
     private final float min = -5;
     private final float max = 5;
+
     @Override
     public void validate(FacesContext facesContext, UIComponent uiComponent, Object o) throws ValidatorException {
         try {
@@ -18,7 +19,7 @@ public class YCoordinateValidator extends AbstractValidator {
         } catch (NullPointerException e) {
             throw new ValidatorException(createMessage("Координата Y - обязательное поле"));
         } catch (InvalidRangeException e) {
-            throw new ValidatorException(createMessage("Y должна быть от "+min+ " до "+max));
+            throw new ValidatorException(createMessage("Y должна быть от " + min + " до " + max));
         }
     }
 }
