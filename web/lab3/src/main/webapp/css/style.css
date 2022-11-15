@@ -3,3 +3,7 @@ canvas {
     position: absolute;
 }
 /* */
+div {
+    align-content: center;
+    position: center;
+}
