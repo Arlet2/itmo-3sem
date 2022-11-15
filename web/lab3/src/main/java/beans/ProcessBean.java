@@ -39,8 +39,6 @@ public class ProcessBean implements Serializable {
         row.setScriptTime(new DecimalFormat("#0.00").format((endTime - startTime) * Math.pow(10, -6)));
 
         pointsBean.addPoint(row);
-
-        pointsBean.updatePointsCollection();
     }
 
     private Row createRow() {
