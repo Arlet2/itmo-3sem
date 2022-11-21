@@ -28,7 +28,7 @@ public class HitChecker {
     }
 
     private boolean checkThirdQuarter(int x, float y, float r) {
-        return r * r / 4 <= x * x + y * y;
+        return r * r / 4 >= x * x + y * y;
     }
 
     private boolean checkFourthQuarter(int x, float y, float r) {

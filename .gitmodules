@@ -7,3 +7,6 @@
 [submodule "prog-langs/assignment-3-image-rotation"]
 	path = prog-langs/assignment-3-image-rotation
 	url = https://gitlab.se.ifmo.ru/Arlet/assignment-3-image-rotation
+[submodule "prog-langs/assignment-4-memory-allocator"]
+	path = prog-langs/assignment-4-memory-allocator
+	url = https://gitlab.se.ifmo.ru/Arlet/assignment-4-memory-allocator.git
