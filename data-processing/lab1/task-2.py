@@ -30,8 +30,6 @@ def DBscan_method(eps, min_samples):
 plt.style.use("ggplot")
 plt.rcParams['figure.figsize']=(12,8)
 
-from sklearn.datasets import make_blobs
-X, y = make_blobs(n_samples=100, random_state=seed, centers=5)
 data = pd.read_csv("Mall_Customers.csv")
 
 X = data[['Annual Income (k$)', 'Spending Score (1-100)']].iloc[:,:].values
