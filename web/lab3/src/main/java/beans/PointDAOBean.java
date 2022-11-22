@@ -14,10 +14,11 @@ import java.util.List;
 @ManagedBean(name = "points", eager = true)
 @ApplicationScoped
 public class PointDAOBean implements Serializable {
-    private AbstractPointDAO pointDAO = new PointDAO();
+    private AbstractPointDAO pointDAO;
     private List<Row> pointsCollection;
 
     public PointDAOBean() {
+        pointDAO = new PointDAO();
         updatePointsCollection();
     }
 
