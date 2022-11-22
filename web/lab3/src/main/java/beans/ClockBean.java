@@ -13,15 +13,29 @@ import java.time.format.DateTimeFormatter;
 @SessionScoped
 public class ClockBean implements Serializable {
     private final int CLOCK_TICK_INTERVAL = 12;
-    private String time = generateTime();
+    private String dateTime = generateTime();
     private String timeSignal;
+    private String time;
 
     public ClockBean() {
-        updateTime();
+        update();
     }
 
-    public void updateTime() {
+    public void update() {
         long timeSeconds = System.currentTimeMillis() / 1000;
+
+        updateTimeSignal(timeSeconds);
+        updateTime(timeSeconds);
+
+        time = timeSignal + " " + dateTime + " " +timeSignal;
+    }
+
+    private void updateTime(long timeSeconds) {
+        if (timeSeconds % CLOCK_TICK_INTERVAL == 0)
+            dateTime = generateTime();
+    }
+
+    private void updateTimeSignal(long timeSeconds) {
         if (timeSeconds % 4 == 0)
             timeSignal = "-";
         else if (timeSeconds % 4 == 1)
@@ -30,12 +44,15 @@ public class ClockBean implements Serializable {
             timeSignal = "|";
         else
             timeSignal = "\\";
-        if (timeSeconds % CLOCK_TICK_INTERVAL == 0)
-            time = generateTime();
     }
 
     private String generateTime() {
         return ZonedDateTime.now()
                 .format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss - VV O"));
+    }
+
+    public String getTime() {
+        update();
+        return time;
     }
 }
