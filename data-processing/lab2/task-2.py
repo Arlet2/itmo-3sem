@@ -56,8 +56,6 @@ from sklearn.model_selection import train_test_split
 
 x_train, x_test, y_train, y_test = train_test_split(columns.lemmatized, columns.cantorNome, train_size = 0.7)
 
-columns.cantorNome.value_counts()
-
 from sklearn.feature_extraction.text import CountVectorizer
 
 vectorizer = CountVectorizer(ngram_range=(1,3))
