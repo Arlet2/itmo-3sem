@@ -36,3 +36,23 @@ function show_spider_fields() {
     $('div#legCountField').show();
     $('input[name="coordinatesForm:legCount"]').prop("disabled", false);
 }
+
+function isLegCountCorrect() {
+    let value = $('input[name="coordinatesForm:legCount"]').value;
+
+    if (value % 1 != 0 || value < 0 || value > 8) {
+        alert("Количество ног введено некорректно");
+        return false;
+    }
+    return true;
+}
+
+function isMustacheLengthCorrect() {
+    let value = $('input[name="coordinatesForm:mustacheLength"]').value;
+
+    if (value < 0 || value > 5) {
+        alert("Длина усов введена некорректно");
+        return false;
+    }
+    return true;
+}
