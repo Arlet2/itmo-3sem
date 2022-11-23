@@ -1,38 +1,38 @@
 $('input[name="coordinatesForm:radius"]').attr("readonly", true); // lock r area
 
-hide_ant_fields();
-hide_spider_fields();
+hideAntFields();
+hideSpiderFields();
 
 $('input[name="coordinatesForm:pointType"]').on("change", function () {
     console.log(this);
     if (this.defaultValue === "spider" && this.checked) {
-        hide_ant_fields();
+        hideAntFields();
 
-        show_spider_fields();
+        showSpiderFields();
     } else if (this.defaultValue === "ant" && this.checked) {
-        hide_spider_fields();
+        hideSpiderFields();
 
-        show_ant_fields();
+        showAntFields();
     }
 });
 
-function hide_ant_fields() {
+function hideAntFields() {
     $('div#mustacheLengthField').hide();
     $('input[name="coordinatesForm:mustacheLength"]').prop("disabled", true);
 
 }
 
-function hide_spider_fields() {
+function hideSpiderFields() {
     $('div#legCountField').hide();
     $('input[name="coordinatesForm:legCount"]').prop("disabled", true);
 }
 
-function show_ant_fields() {
+function showAntFields() {
     $('div#mustacheLengthField').show();
     $('input[name="coordinatesForm:mustacheLength"]').prop("disabled", false);
 }
 
-function show_spider_fields() {
+function showSpiderFields() {
     $('div#legCountField').show();
     $('input[name="coordinatesForm:legCount"]').prop("disabled", false);
 }
