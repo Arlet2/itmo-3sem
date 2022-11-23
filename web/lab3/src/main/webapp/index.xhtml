@@ -61,7 +61,7 @@
                         </h:commandButton>
                     </div>
                     <div id="inputTextY">
-                        <label for="inputTextY">Y:</label>
+                        <label for="inputY">Y:</label>
                         <h:inputText class="form-controll" id="inputY"
                                      a:placeholder="-5..5"
                                      required="true"
@@ -72,6 +72,29 @@
                         </h:inputText>
                         <h:message for="inputY" id="yErrors" style="color:red"/>
                     </div>
+                    <div id="pointTypeField">
+                        <label for="pointType">Тип точки</label>
+                        <h:selectOneRadio id="pointType" required="true" value="#{coordinates.type}">
+                            <f:selectItem itemValue="spider" itemLabel="Павук"/>
+                            <f:selectItem itemValue="ant" itemLabel="Муравей"/>
+                        </h:selectOneRadio>
+                    </div>
+                    <div id="mustacheLengthField">
+                        <label for="mustacheLength">Длина усов</label>
+                        <h:inputText id="mustacheLength" a:placeholder="0..5" value="#{coordinates.mustacheLength}">
+                            <f:converter converterId="NumberConverter"/>
+                            <f:validator validatorId="MustacheLengthValidator"/>
+                        </h:inputText>
+                        <h:message for="mustacheLength" id="mustacheError" style="color: red"/>
+                    </div>
+                    <div id="legCountField">
+                        <label for="legCount">Количество ног</label>
+                        <h:inputText id="legCount" a:placeholder="0..8" value="#{coordinates.legCount}">
+                            <f:converter converterId="NumberConverter"/>
+                            <f:validator validatorId="LegCountValidator"/>
+                        </h:inputText>
+                        <h:message for="legCount" id="legCountError" style="color: red"/>
+                    </div>
                     <div id="sliderRadius">
                         <label for="sliderRadius">R:</label>
                         <h:inputText id="radius" value="#{coordinates.radius}"/>
@@ -80,7 +103,7 @@
                     </div>
                     <h:commandButton value="CLICK" action="#{process.processNewValue()}" class="btn btn-outline-dark">
                         <f:ajax execute="coordinatesForm"
-                                render="yErrors table"
+                                render="yErrors table mustacheError legCountError"
                                 onevent="ajaxGetPoints"/>
                     </h:commandButton>
                 </h:form>
