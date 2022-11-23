@@ -3,8 +3,6 @@ const coefficientX = canvas.width / 2.8169;
 const coefficientY = canvas.height / 2.8169;
 const circleSize = canvas.width / 100;
 
-$('input[name="coordinatesForm:radius"]').attr("readonly", true); // lock r area
-
 loadPoints();
 
 function loadPoints() {
