@@ -13,6 +13,9 @@ public class CoordinatesBean implements Serializable {
     private int coordinateX = 0;
     private float coordinateY = 0;
     private float radius = 1;
+    private String type;
+    private float mustacheLength;
+    private float legCount;
 
     public CoordinatesBean() {
 
