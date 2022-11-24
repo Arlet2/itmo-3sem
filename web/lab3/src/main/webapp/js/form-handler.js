@@ -40,7 +40,7 @@ function showSpiderFields() {
 function isLegCountCorrect() {
     let value = $('input[name="coordinatesForm:legCount"]').value;
 
-    if (value % 1 != 0 || value < 0 || value > 8) {
+    if (value % 1 == 0 || value < 0 || value > 8) {
         alert("Количество ног введено некорректно");
         return false;
     }
