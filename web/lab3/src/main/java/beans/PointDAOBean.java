@@ -1,9 +1,7 @@
 package beans;
 
-import database.AbstractPointDAO;
-import database.PointDAO;
+import database.*;
 import lombok.Data;
-import database.Point;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -26,8 +24,14 @@ public class PointDAOBean implements Serializable {
         pointsCollection = pointDAO.getPoints();
     }
 
-    public void addPoint(Point point) {
-        pointDAO.addPoint(point);
+    public void addSpider(Spider spider) {
+        pointDAO.addSpider(spider);
+
+        updatePointsCollection();
+    }
+
+    public void addAnt(Ant ant) {
+        pointDAO.addAnt(ant);
 
         updatePointsCollection();
     }

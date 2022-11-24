@@ -3,7 +3,9 @@ package database;
 import java.util.List;
 
 public interface AbstractPointDAO {
-    void addPoint(Point point);
+    void addSpider(Spider spider);
+
+    void addAnt(Ant ant);
 
     List<Point> getPoints();
 

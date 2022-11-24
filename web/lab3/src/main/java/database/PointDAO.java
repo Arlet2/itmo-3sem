@@ -14,7 +14,7 @@ public class PointDAO implements AbstractPointDAO {
         factory = HibernateSessionFactoryUtil.getSessionFactory();
     }
 
-    public void addPoint(Point point) {
+    private void addPoint(Point point) {
         Session session = factory.openSession();
 
         Transaction transaction = null;
@@ -33,6 +33,16 @@ public class PointDAO implements AbstractPointDAO {
         }
 
 
+    }
+
+    @Override
+    public void addSpider(Spider spider) {
+        addPoint(spider);
+    }
+
+    @Override
+    public void addAnt(Ant ant) {
+        addPoint(ant);
     }
 
     public List<Point> getPoints() {
