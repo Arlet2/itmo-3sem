@@ -133,6 +133,9 @@
         <h:inputHidden id="xValue" value="#{coordinates.coordinateX}"/>
         <h:inputHidden id="yValue" value="#{coordinates.coordinateY}"/>
         <h:inputHidden id="rValue" value="#{coordinates.radius}"/>
+        <h:inputHidden id="typeValue" value="#{coordinates.type}"/>
+        <h:inputHidden id="mustacheLengthValue" value="#{coordinates.mustacheLength}"/>
+        <h:inputHidden id="legCountValue" value="#{coordinates.legCount}"/>
 
         <h:commandButton id="phantomButton" action="#{process.processNewValue()}" style="visibility: hidden">
             <f:ajax execute="hiddenForm radius" render="table" onevent="ajaxGetPoints"/>
