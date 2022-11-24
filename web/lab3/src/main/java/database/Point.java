@@ -7,7 +7,8 @@ import java.io.Serializable;
 @Data
 @Entity
 @Table(name = "points")
-public class Point implements Serializable {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Point implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
