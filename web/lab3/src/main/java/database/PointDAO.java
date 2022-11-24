@@ -14,14 +14,14 @@ public class PointDAO implements AbstractPointDAO {
         factory = HibernateSessionFactoryUtil.getSessionFactory();
     }
 
-    public void addPoint(Row row) {
+    public void addPoint(Point point) {
         Session session = factory.openSession();
 
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
 
-            session.persist(row);
+            session.persist(point);
 
             transaction.commit();
         } catch (RuntimeException e) {
@@ -35,12 +35,12 @@ public class PointDAO implements AbstractPointDAO {
 
     }
 
-    public List<Row> getPoints() {
+    public List<Point> getPoints() {
         Session session = factory.openSession();
 
-        Query query = session.createQuery("FROM Row", Row.class);
+        Query query = session.createQuery("FROM Point", Point.class);
 
-        List<Row> result = query.getResultList();
+        List<Point> result = query.getResultList();
         session.close();
 
         return result;

@@ -1,7 +1,7 @@
 package beans;
 
+import database.Point;
 import tableHandlers.HitChecker;
-import database.Row;
 import lombok.Data;
 
 import javax.faces.bean.ManagedBean;
@@ -30,29 +30,30 @@ public class ProcessBean implements Serializable {
     }
 
     public void processNewValue() {
+        System.out.println(coordinatesBean);
         long startTime = System.nanoTime();
 
-        Row row = createRow();
+        Point point = createRow();
 
         long endTime = System.nanoTime();
 
-        row.setScriptTime(new DecimalFormat("#0.00").format((endTime - startTime) * Math.pow(10, -6)));
+        point.setScriptTime(new DecimalFormat("#0.00").format((endTime - startTime) * Math.pow(10, -6)));
 
-        pointsBean.addPoint(row);
+        pointsBean.addPoint(point);
     }
 
-    private Row createRow() {
-        Row row = new Row();
-        row.setDate(
+    private Point createRow() {
+        Point point = new Point();
+        point.setDate(
                 ZonedDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss - VV O"))
         );
 
-        row.setX(coordinatesBean.getCoordinateX());
-        row.setY(coordinatesBean.getCoordinateY());
-        row.setR(coordinatesBean.getRadius());
+        point.setX(coordinatesBean.getCoordinateX());
+        point.setY(coordinatesBean.getCoordinateY());
+        point.setR(coordinatesBean.getRadius());
 
-        row.setHit(hitChecker.isHit(row.getX(), row.getY(), row.getR()));
+        point.setHit(hitChecker.isHit(point.getX(), point.getY(), point.getR()));
 
-        return row;
+        return point;
     }
 }

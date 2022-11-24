@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import database.AbstractPointDAO;
 import database.PointDAO;
-import database.Row;
+import database.Point;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,6 +25,6 @@ public class MapServlet extends HttpServlet {
 
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new SimpleModule());
-        resp.getWriter().write(objectMapper.writeValueAsString(pointDao.getPoints().toArray(new Row[0])));
+        resp.getWriter().write(objectMapper.writeValueAsString(pointDao.getPoints().toArray(new Point[0])));
     }
 }

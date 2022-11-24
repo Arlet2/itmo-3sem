@@ -3,9 +3,9 @@ package database;
 import java.util.List;
 
 public interface AbstractPointDAO {
-    void addPoint(Row row);
+    void addPoint(Point point);
 
-    List<Row> getPoints();
+    List<Point> getPoints();
 
     void removeAllPoints();
 }

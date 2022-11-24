@@ -7,7 +7,7 @@ import java.io.Serializable;
 @Data
 @Entity
 @Table(name = "points")
-public class Row implements Serializable {
+public class Point implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -18,7 +18,7 @@ public class Row implements Serializable {
     private boolean isHit;
     private String scriptTime;
 
-    public Row() {
+    public Point() {
 
     }
 }

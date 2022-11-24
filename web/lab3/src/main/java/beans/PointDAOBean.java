@@ -3,7 +3,7 @@ package beans;
 import database.AbstractPointDAO;
 import database.PointDAO;
 import lombok.Data;
-import database.Row;
+import database.Point;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -15,7 +15,7 @@ import java.util.List;
 @ApplicationScoped
 public class PointDAOBean implements Serializable {
     private AbstractPointDAO pointDAO;
-    private List<Row> pointsCollection;
+    private List<Point> pointsCollection;
 
     public PointDAOBean() {
         pointDAO = new PointDAO();
@@ -26,8 +26,8 @@ public class PointDAOBean implements Serializable {
         pointsCollection = pointDAO.getPoints();
     }
 
-    public void addPoint(Row row) {
-        pointDAO.addPoint(row);
+    public void addPoint(Point point) {
+        pointDAO.addPoint(point);
 
         updatePointsCollection();
     }
