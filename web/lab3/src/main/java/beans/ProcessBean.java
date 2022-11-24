@@ -1,6 +1,9 @@
 package beans;
 
+import database.Ant;
+import database.IncorrectTypeException;
 import database.Point;
+import database.Spider;
 import tableHandlers.HitChecker;
 import lombok.Data;
 
@@ -11,6 +14,7 @@ import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 @Data
 @ManagedBean(name = "process", eager = true)
@@ -33,17 +37,32 @@ public class ProcessBean implements Serializable {
         System.out.println(coordinatesBean);
         long startTime = System.nanoTime();
 
-        Point point = createRow();
+        Point point = createRow()
+                .orElseThrow(() -> {
+                    throw new IncorrectTypeException();
+                });
 
         long endTime = System.nanoTime();
 
         point.setScriptTime(new DecimalFormat("#0.00").format((endTime - startTime) * Math.pow(10, -6)));
 
-        pointsBean.addPoint(point);
+        if (coordinatesBean.getType().equals("spider"))
+            pointsBean.addSpider((Spider) point);
+        else if (coordinatesBean.getType().equals("ant"))
+            pointsBean.addAnt((Ant) point);
     }
 
-    private Point createRow() {
-        Point point = new Point();
+    private Optional<Point> createRow() {
+        Point point;
+        if (coordinatesBean.getType().equals("spider")) {
+            point = new Spider();
+            ((Spider) point).setLegCount(coordinatesBean.getLegCount());
+        } else if (coordinatesBean.getType().equals("ant")) {
+            point = new Ant();
+            ((Ant) point).setMustacheLength(coordinatesBean.getMustacheLength());
+        } else
+            return Optional.empty();
+
         point.setDate(
                 ZonedDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss - VV O"))
         );
@@ -54,6 +73,6 @@ public class ProcessBean implements Serializable {
 
         point.setHit(hitChecker.isHit(point.getX(), point.getY(), point.getR()));
 
-        return point;
+        return Optional.of(point);
     }
 }
