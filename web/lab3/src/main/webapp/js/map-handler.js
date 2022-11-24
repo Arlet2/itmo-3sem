@@ -52,7 +52,8 @@ $('canvas.map').on('click', function (event) {
 
     console.log("X: " + coordinates.x + " Y: " + -coordinates.y);
 
-    setFields(coordinates.x, -coordinates.y, r);
+    if(setFields(coordinates.x, -coordinates.y, r))
+        document.getElementById("hiddenForm:phantomButton").click();
 });
 
 function getMouseCoordinates(canvas, event, r) {
@@ -75,7 +76,29 @@ function setFields(x, y, r) {
     document.getElementById("hiddenForm:yValue").value = y;
     document.getElementById("hiddenForm:rValue").value = r;
 
-    document.getElementById("hiddenForm:phantomButton").click();
+    let type;
+
+    if ($('input[name="coordinatesForm:pointType"]')[0].checked) {
+        type = "spider";
+        if (!isLegCountCorrect())
+            return false;
+        document.getElementById("hiddenForm:legCountValue").value =
+            Math.round($('input[name="coordinatesForm:legCount"]').val());
+    }
+    else if ($('input[name="coordinatesForm:pointType"]')[1].checked) {
+        type = "ant";
+        if (!isMustacheLengthCorrect())
+            return false;
+        document.getElementById("hiddenForm:mustacheLengthValue").value =
+            $('input[name="coordinatesForm:mustacheLength"]').val();
+    }
+    else {
+        alert("Choose your fighter, please");
+        return false;
+    }
+    document.getElementById("hiddenForm:typeValue").value = type;
+
+    return true;
 }
 
 function drawCircle(context, x, y, radius, color) {
