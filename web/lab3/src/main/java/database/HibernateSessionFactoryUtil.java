@@ -16,6 +16,8 @@ public class HibernateSessionFactoryUtil {
             try {
                 Configuration configuration = new Configuration().configure();
                 configuration.addAnnotatedClass(Point.class);
+                configuration.addAnnotatedClass(Spider.class);
+                configuration.addAnnotatedClass(Ant.class);
 
                 StandardServiceRegistryBuilder builder =
                         new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
