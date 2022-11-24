@@ -15,7 +15,7 @@ public class CoordinatesBean implements Serializable {
     private float radius = 1;
     private String type;
     private float mustacheLength;
-    private float legCount;
+    private int legCount;
 
     public CoordinatesBean() {
 
