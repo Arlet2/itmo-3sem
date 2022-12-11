@@ -2,18 +2,23 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
-import App from './components/App';
+import Main from './components/Main';
 import reportWebVitals from './reportWebVitals';
 import './css/index.css';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import NotFound from './components/NotFound';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <Router>
+      <Routes>
+        <Route path='/main' element={<Provider store={store}><Main /></Provider>} />
+        <Route path='/*' element={<NotFound/>} />
+      </Routes>
+    </Router>
   </React.StrictMode>
 );
 
