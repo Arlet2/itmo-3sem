@@ -10,6 +10,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
+    "react-router-dom": "^6.4.5",
     "react-scripts": "5.0.1",
     "react-toolbox": "^2.0.0-beta.13",
     "react-toolbox-themr": "^1.0.2",
@@ -42,17 +43,19 @@
   },
   "reactToolbox": {
     "include": [
-        "APP_BAR",
-        "BUTTON",
-        "NAVIGATION",
-        "LINK"
+      "APP_BAR",
+      "BUTTON",
+      "NAVIGATION",
+      "LINK",
+      "CHECKBOX",
+      "INPUT"
     ],
     "customProperties": {
-        "animation-duration": "0.3s",
-        "color-accent": "var(--palette-pink-a200)",
-        "color-accent-dark": "var(--palette-pink-700)",
-        "color-primary-contrast": "var(--color-dark-contrast)",
-        "color-accent-contrast": "var(--color-dark-contrast)"
+      "animation-duration": "0.3s",
+      "color-accent": "var(--palette-pink-a200)",
+      "color-accent-dark": "var(--palette-pink-700)",
+      "color-primary-contrast": "var(--color-dark-contrast)",
+      "color-accent-contrast": "var(--color-dark-contrast)"
     },
     "output": "src/assets/react-toolbox"
   }
