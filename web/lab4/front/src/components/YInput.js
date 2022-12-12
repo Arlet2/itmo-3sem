@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import Input from 'react-toolbox/lib/input/Input';
 import { selectY, setY } from "../features/formHandler.js/formSlice";
 
-let errorMessage="213";
+let errorMessage="";
 
 function YInput() {
     const yCoordinate = useSelector(selectY);
     const dispatch = useDispatch();
     return (
         <div>
-            <Input label="Y" hint="-5..5" name="lol" 
+            <Input label="Y" hint="-5..5" name="yValue" 
                 error={isYCorrect(yCoordinate)?null:errorMessage} 
                 required={true} value={yCoordinate} 
                 onChange={(value) => dispatch(setY(clearSpacesAndChangeCommaToPoint(value)))} 
