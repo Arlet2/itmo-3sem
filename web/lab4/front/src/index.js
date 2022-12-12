@@ -16,8 +16,8 @@ root.render(
   <React.StrictMode>
     <Router>
       <Routes>
-        <Route path='/main' element={<Provider store={store}><Main /></Provider>} />
-        <Route path='/' element={<Login/>} />
+        <Route path='/' element={<Provider store={store}><Main /></Provider>} />
+        <Route path='/login' element={<Login/>} />
         <Route path='/*' element={<NotFound/>} />
       </Routes>
     </Router>
