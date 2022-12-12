@@ -10,15 +10,15 @@ import Header from './Header';
 import Map from './Map';
 
 function Main() {
-  return (
-    <ThemeProvider theme={theme}>
-    <div className="Main">
-      <Header />
-      <Form />
-      <Map />
-    </div>
-    </ThemeProvider>
-  );
+	return (
+		<ThemeProvider theme={theme}>
+			<div className="Main">
+				<Header />
+				<Form />
+				<Map />
+			</div>
+		</ThemeProvider>
+	);
 }
 
 export default Main;
