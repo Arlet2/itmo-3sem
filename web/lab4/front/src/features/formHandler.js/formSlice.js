@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
     x: undefined,
-    y: 5,
+    y: 0,
     r: undefined
 };
 
