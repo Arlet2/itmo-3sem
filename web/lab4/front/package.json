@@ -48,7 +48,9 @@
       "NAVIGATION",
       "LINK",
       "CHECKBOX",
-      "INPUT"
+      "INPUT",
+      "CARD",
+      "TABLE"
     ],
     "customProperties": {
       "animation-duration": "0.3s",
