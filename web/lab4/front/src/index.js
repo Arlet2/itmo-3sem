@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import './css/index.css';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import NotFound from './components/NotFound';
+import Login from './components/Login';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -16,6 +17,7 @@ root.render(
     <Router>
       <Routes>
         <Route path='/main' element={<Provider store={store}><Main /></Provider>} />
+        <Route path='/' element={<Login/>} />
         <Route path='/*' element={<NotFound/>} />
       </Routes>
     </Router>
