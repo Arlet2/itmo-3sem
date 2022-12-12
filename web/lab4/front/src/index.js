@@ -13,15 +13,13 @@ const container = document.getElementById('root');
 const root = createRoot(container);
 
 root.render(
-  <React.StrictMode>
     <Router>
       <Routes>
         <Route path='/' element={<Provider store={store}><Main /></Provider>} />
-        <Route path='/login' element={<Login/>} />
+        <Route path='/login' element={<Provider store={store}><Login /></Provider>} />
         <Route path='/*' element={<NotFound/>} />
       </Routes>
     </Router>
-  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
