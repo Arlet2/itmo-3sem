@@ -8,8 +8,12 @@ import '../css/Main.css';
 import Form from './Form';
 import Header from './Header';
 import Map from './Map';
+import Cookies from 'js-cookie';
 
 function Main() {
+	if (!Cookies.get("jwt-token"))
+		window.location.replace("/login");
+
 	return (
 		<ThemeProvider theme={theme}>
 			<div className="Main">
