@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import React from 'react';
 
 import AppBar from 'react-toolbox/lib/app_bar/AppBar';
@@ -11,11 +12,16 @@ function Header() {
             <AppBar title='WEB lab 4'>
                 <Navigation>
                     <p>Logout</p>
-                    <img src={LogoutLogo} alt="Logout"/>
+                    <img id="logoutIcon" onClick={logout} src={LogoutLogo} alt="Logout"/>
                 </Navigation>
             </AppBar>
         </header>
     );
+}
+
+function logout() {
+    Cookies.remove("jwt-token");
+    window.location.replace("/login");
 }
 
 export default Header;
