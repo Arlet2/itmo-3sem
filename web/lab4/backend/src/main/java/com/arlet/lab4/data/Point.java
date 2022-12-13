@@ -19,7 +19,8 @@ public class Point {
     private int x;
     private float y;
     private int r;
-    private boolean isHit;
+    private String status;
     private LocalDateTime date;
     private int scriptTime;
+    private String owner;
 }
