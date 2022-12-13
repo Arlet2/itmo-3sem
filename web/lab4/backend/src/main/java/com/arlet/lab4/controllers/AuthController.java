@@ -27,6 +27,7 @@ public class AuthController {
         try {
             return authService.login(login, password);
         } catch (AuthException e) {
+            e.printStackTrace();
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
@@ -36,7 +37,13 @@ public class AuthController {
         try {
             return authService.register(login, password);
         } catch (AuthException e) {
+            e.printStackTrace();
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
+    }
+
+    @RequestMapping(value="/token-validation", method = RequestMethod.GET)
+    public boolean checkToken(@RequestParam String token) {
+        return authService.isJWTValid(token);
     }
 }
