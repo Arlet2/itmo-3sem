@@ -20,7 +20,7 @@ public class Point {
     private float y;
     private int r;
     private String status;
-    private LocalDateTime date;
-    private int scriptTime;
+    private String date;
+    private String scriptTime;
     private String owner;
 }
