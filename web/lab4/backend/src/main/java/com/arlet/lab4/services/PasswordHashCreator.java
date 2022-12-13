@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Random;
 
 @Service
 public class PasswordHashCreator {
@@ -21,5 +22,13 @@ public class PasswordHashCreator {
         messageDigest.update(password.getBytes());
 
         return new String(messageDigest.digest());
+    }
+
+    public String generateSalt() {
+        byte[] bytes = new byte[10];
+
+        new Random().nextBytes(bytes);
+
+        return new String(bytes);
     }
 }
