@@ -17,14 +17,15 @@ public class AuthService {
 
     private final PasswordHashCreator passwordHashCreator;
 
-    @Value("${jwt_secret_key}")
-    private String secretKey;
+    private final String secretKey;
 
     private final Algorithm algorithm;
 
-    public AuthService(@Autowired UserRepository userRepository, @Autowired PasswordHashCreator passwordHashCreator) {
+    public AuthService(@Autowired UserRepository userRepository, @Autowired PasswordHashCreator passwordHashCreator,
+                       @Value("${jwt_secret_key}")String secretKey) {
         this.userRepository = userRepository;
         this.passwordHashCreator = passwordHashCreator;
+        this.secretKey = secretKey;
         algorithm = Algorithm.HMAC256(secretKey);
     }
 
@@ -48,6 +49,9 @@ public class AuthService {
 
         if (password.length() < 6)
             throw new AuthException("Пароль должен состоять минимум из 6 символов");
+
+        String salt = passwordHashCreator.generateSalt();
+        userRepository.save(new User(login, passwordHashCreator.createHash(password, salt), salt));
 
         return createJWT(login);
     }
