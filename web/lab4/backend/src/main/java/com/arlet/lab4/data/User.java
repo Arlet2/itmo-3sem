@@ -1,24 +1,19 @@
 package com.arlet.lab4.data;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="users")
-@Data
+
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
     @Id
     private String login;
     private String password;
     private String salt;
-
-    public User() {
-
-    }
-    public User(String login, String password, String salt) {
-        this.login = login;
-        this.password = password;
-        this.salt = salt;
-    }
 }
