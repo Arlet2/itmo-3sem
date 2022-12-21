@@ -11,18 +11,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.text.DecimalFormat;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(value="api/handler")
@@ -48,13 +43,10 @@ public class PointsController {
     @RequestMapping(value="/add-point", consumes = "application/json", method = RequestMethod.POST)
     public Point addPoint(@RequestBody PointBody pointBody, HttpServletRequest request) {
 
-        Optional<String> jwt = getJWTFromCookie(request);
-
-        if (jwt.isEmpty())
-            return null;
+        String jwt = cookiesService.getJWTFromCookie(request).get(); // фильтр гарантирует существование jwt
 
         long startTime = System.nanoTime();
-        Point point = new Point();
+        var point = new Point();
 
         if(validationService.validateInputData(pointBody.x, pointBody.y, pointBody.r))
             point.setStatus(
@@ -73,7 +65,7 @@ public class PointsController {
 
         point.setScriptTime(new DecimalFormat("#0.00").format(finalTime*Math.pow(10, -6))+" мс");
 
-        point.setOwner(authService.decodeJWT(jwt.get()).getClaim("login").asString());
+        point.setOwner(authService.decodeJWT(jwt).getClaim("login").asString());
 
         try {
             pointsRepository.save(point);
@@ -87,24 +79,9 @@ public class PointsController {
     @RequestMapping(value = "/points", method = RequestMethod.GET)
     public List<Point> getPoints(HttpServletRequest request) {
 
-        Optional<String> jwt = getJWTFromCookie(request);
+        String jwt = cookiesService.getJWTFromCookie(request).get(); // фильтр гарантирует существование jwt
 
-        if (jwt.isEmpty())
-            return null;
-
-        if(!authService.isJWTValid(jwt.get()))
-            return null;
-
-        return pointsRepository.findAllByOwner(authService.decodeJWT(jwt.get()).getClaim("login").asString());
-    }
-
-    private Optional<String> getJWTFromCookie(HttpServletRequest request) {
-        Optional<Cookie> cookie = cookiesService.getCookieByName(request.getCookies(), "jwt-token");
-
-        if (cookie.isEmpty())
-            return Optional.empty();
-
-        return Optional.ofNullable(cookie.get().getValue());
+        return pointsRepository.findAllByOwner(authService.decodeJWT(jwt).getClaim("login").asString());
     }
 
     @Getter
