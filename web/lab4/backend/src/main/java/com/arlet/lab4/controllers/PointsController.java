@@ -46,12 +46,12 @@ public class PointsController {
     }
 
     @RequestMapping(value="/add-point", consumes = "application/json", method = RequestMethod.POST)
-    public void addPoint(@RequestBody PointBody pointBody, HttpServletRequest request) {
+    public Point addPoint(@RequestBody PointBody pointBody, HttpServletRequest request) {
 
         Optional<String> jwt = getJWTFromCookie(request);
 
         if (jwt.isEmpty())
-            return;
+            return null;
 
         long startTime = System.nanoTime();
         Point point = new Point();
@@ -75,7 +75,13 @@ public class PointsController {
 
         point.setOwner(authService.decodeJWT(jwt.get()).getClaim("login").asString());
 
-        pointsRepository.save(point);
+        try {
+            pointsRepository.save(point);
+            return point;
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @RequestMapping(value = "/points", method = RequestMethod.GET)
