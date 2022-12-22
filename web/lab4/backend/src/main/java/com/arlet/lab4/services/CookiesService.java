@@ -10,6 +10,8 @@ import java.util.Optional;
 public class CookiesService {
 
     public Optional<Cookie> getCookieByName(Cookie[] cookies, String name) {
+        if (cookies == null)
+            return Optional.empty();
         for (Cookie cookie :
                 cookies) {
             if (cookie.getName().equals(name))
