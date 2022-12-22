@@ -1,13 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import React from "react";
 
 const initialState = {
     login: undefined,
     password: undefined,
+    repeatedPassword: undefined,
+    errorMessage: undefined,
     isLogin: true
 };
 
-export const authSlice = createSlice({
+const authSlice = createSlice({
     name: "auth",
     initialState,
     reducers: {
@@ -19,13 +20,36 @@ export const authSlice = createSlice({
         },
         clearPassword: (state) => {
             state.password = undefined;
+            state.repeatedPassword = undefined;
+        },
+        changeToLogin: (state) => {
+            state.isLogin = true;
+        },
+        changeToRegister: (state) => {
+            state.isLogin = false;
+        },
+        switchIsLogin: (state) => {
+            state.isLogin = !state.isLogin;
+        },
+        clearErrorMessage: (state) => {
+            state.errorMessage = undefined;
+        },
+        changeErrorMessage: (state, action) => {
+            state.errorMessage = action.payload;
+        },
+        setRepeatedPassword: (state, action) => {
+            state.repeatedPassword = action.payload;
         }
+
     }
 });
 
-export const {setLogin, setPassword, clearPassword} = authSlice.actions;
+export const {  setLogin, setPassword, clearPassword, 
+                changeToLogin, changeToRegister, switchIsLogin, 
+                clearErrorMessage, changeErrorMessage, setRepeatedPassword} = authSlice.actions;
 
 export const selectLogin = (state) => state.auth.login;
 export const selectPassword = (state) => state.auth.password;
+export const selectIsLogin = (state) => state.auth.isLogin;
 
 export default authSlice.reducer;
