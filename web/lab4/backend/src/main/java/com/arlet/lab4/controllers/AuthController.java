@@ -4,15 +4,14 @@ import com.arlet.lab4.services.AuthException;
 import com.arlet.lab4.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 
 @RestController
-@RequestMapping(value="/api/auth")
+@RequestMapping(value="/api/")
 public class AuthController {
 
     private final AuthService authService;
@@ -21,13 +20,13 @@ public class AuthController {
         this.authService = authService;
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String tryToLogin(@RequestParam String login, @RequestParam String password) {
-
+    @RequestMapping(value = "/login", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> tryToLogin(@RequestParam String login, @RequestParam String password) {
         try {
-            return authService.login(login, password);
+            String token = authService.login(login, password);
+
+            return new ResponseEntity<>(token, HttpStatus.OK);
         } catch (AuthException e) {
-            e.printStackTrace();
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
