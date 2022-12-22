@@ -51,5 +51,7 @@ export const {  setLogin, setPassword, clearPassword,
 export const selectLogin = (state) => state.auth.login;
 export const selectPassword = (state) => state.auth.password;
 export const selectIsLogin = (state) => state.auth.isLogin;
+export const selectRepeatedPassword = (state) => state.auth.repeatedPassword;
+export const selectErrorMessage = (state) => state.auth.errorMessage;
 
 export default authSlice.reducer;
