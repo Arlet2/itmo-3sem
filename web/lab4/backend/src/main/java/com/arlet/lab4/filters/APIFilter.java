@@ -1,5 +1,6 @@
 package com.arlet.lab4.filters;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean;
 
@@ -10,6 +11,13 @@ import java.io.IOException;
 
 @Component
 public class APIFilter extends GenericFilterBean {
+
+    private final String[] allowedOrigins;
+
+    public APIFilter(@Value("${allowed_api_origins}") String[] allowedOrigins) {
+        this.allowedOrigins = allowedOrigins;
+    }
+
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
@@ -19,7 +27,19 @@ public class APIFilter extends GenericFilterBean {
 
         System.out.println("API FILTER CALLED");
 
-        response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+        for (String origin: allowedOrigins) {
+            if (request.getHeader("Origin").equals(origin)) {
+                response.setHeader("Access-Control-Allow-Origin", origin);
+                break;
+            }
+        }
+
+        if (response.getHeader("Access-Control-Allow-Origin") == null ||
+                response.getHeader("Access-Control-Allow-Origin").isEmpty()) {
+            System.out.println("CORS blocking...");
+            return;
+        }
+
         response.setHeader("Access-Control-Allow-Credentials", "true");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Max-Age", "3600");
