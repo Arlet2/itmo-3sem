@@ -1,4 +1,4 @@
-package com.arlet.lab4;
+package com.arlet.lab4.configurations;
 
 import com.arlet.lab4.filters.APIFilter;
 import com.arlet.lab4.filters.SecureFilter;
