@@ -2,7 +2,6 @@ package com.arlet.lab4.services;
 
 import org.springframework.stereotype.Service;
 
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Random;
@@ -17,7 +16,7 @@ public class PasswordHashCreator {
 
     public synchronized String createHash(String password, String salt) {
         String pepper = "#13A$P";
-        password = pepper +password+salt;
+        password = pepper + password + salt;
 
         messageDigest.update(password.getBytes());
 
