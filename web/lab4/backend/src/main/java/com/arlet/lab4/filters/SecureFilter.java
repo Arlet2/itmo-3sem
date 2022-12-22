@@ -13,12 +13,12 @@ import java.io.IOException;
 import java.util.Optional;
 
 @Component
-public class AuthFilter extends GenericFilterBean {
+public class SecureFilter extends GenericFilterBean {
 
     private final AuthService authService;
     private final CookiesService cookiesService;
 
-    public AuthFilter(@Autowired AuthService authService, @Autowired CookiesService cookiesService) {
+    public SecureFilter(@Autowired AuthService authService, @Autowired CookiesService cookiesService) {
         this.authService = authService;
         this.cookiesService = cookiesService;
     }
