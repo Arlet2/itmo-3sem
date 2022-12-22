@@ -20,7 +20,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
-@RequestMapping(value="api/handler")
+@RequestMapping(value="/api/secure")
 public class PointsController {
 
     private final CookiesService cookiesService;
