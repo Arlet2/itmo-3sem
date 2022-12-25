@@ -12,7 +12,10 @@ import ThemeProvider from 'react-toolbox/lib/ThemeProvider';
 import Cookies from "js-cookie";
 import AuthField from "./AuthField";
 import { useDispatch, useSelector } from "react-redux";
-import { clearErrorMessage, selectErrorMessage, selectIsLogin, selectLogin, selectPassword, selectRepeatedPassword, setErrorMessage, switchIsLogin } from "../features/auth/authSlice";
+import {
+    clearErrorMessage, selectErrorMessage, selectIsLogin, selectLogin,
+    selectPassword, selectRepeatedPassword, setErrorMessage, switchIsLogin
+} from "../features/auth/authSlice";
 import { goToMain, returnBack, validateToken } from "../utils";
 
 function Login() {
@@ -56,8 +59,8 @@ function Login() {
 
         fetch("http://localhost:8080/api/login", {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({login: login, password: password})
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ login: login, password: password })
         })
             .then(
                 (result) => {
