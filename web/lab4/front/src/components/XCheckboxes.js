@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 import Checkbox from 'react-toolbox/lib/checkbox/Checkbox';
-import { selectX, setX } from '../features/formHandler.js/formSlice';
+import { selectX, setX } from '../features/formHandler/formSlice';
 
 function XCheckboxes() {
     const dispatch = useDispatch();
