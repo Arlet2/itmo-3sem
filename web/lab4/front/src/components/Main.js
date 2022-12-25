@@ -9,10 +9,17 @@ import Form from './Form';
 import Header from './Header';
 import Map from './Map';
 import Cookies from 'js-cookie';
+import { goToLogin, validateToken } from '../utils';
 
 function Main() {
-	if (!Cookies.get("jwt-token"))
-		window.location.replace("/login");
+	validateToken()
+		.then((result) => {
+			if (!result) {
+				console.log(123);
+				Cookies.remove("jwt-token");
+				goToLogin();
+			}
+		});
 
 	return (
 		<ThemeProvider theme={theme}>
