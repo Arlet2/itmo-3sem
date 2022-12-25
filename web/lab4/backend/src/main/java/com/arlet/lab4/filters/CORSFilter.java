@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
-public class APIFilter extends GenericFilterBean {
+public class CORSFilter extends GenericFilterBean {
 
     private final String[] allowedOrigins;
 
-    public APIFilter(@Value("${allowed_api_origins}") String[] allowedOrigins) {
+    public CORSFilter(@Value("${allowed_api_origins}") String[] allowedOrigins) {
         this.allowedOrigins = allowedOrigins;
     }
 
@@ -25,7 +25,7 @@ public class APIFilter extends GenericFilterBean {
         var request = (HttpServletRequest) servletRequest;
         var response = (HttpServletResponse) servletResponse;
 
-        System.out.println("API FILTER CALLED");
+        System.out.println("CORS FILTER CALLED");
 
         for (String origin: allowedOrigins) {
             if (request.getHeader("Origin").equals(origin)) {

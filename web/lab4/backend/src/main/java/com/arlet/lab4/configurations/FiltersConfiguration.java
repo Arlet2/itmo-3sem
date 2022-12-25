@@ -1,6 +1,6 @@
 package com.arlet.lab4.configurations;
 
-import com.arlet.lab4.filters.APIFilter;
+import com.arlet.lab4.filters.CORSFilter;
 import com.arlet.lab4.filters.SecureFilter;
 import com.arlet.lab4.services.AuthService;
 import com.arlet.lab4.services.CookiesService;
@@ -25,11 +25,11 @@ public class FiltersConfiguration {
     }
 
     @Bean
-    public FilterRegistrationBean<APIFilter> createFilterAPIFilter(
+    public FilterRegistrationBean<CORSFilter> createFilterAPIFilter(
             @Value("${allowed_api_origins}") String[] allowedOrigins) {
-        var filter = new FilterRegistrationBean<APIFilter>();
+        var filter = new FilterRegistrationBean<CORSFilter>();
 
-        filter.setFilter(new APIFilter(allowedOrigins));
+        filter.setFilter(new CORSFilter(allowedOrigins));
 
         filter.addUrlPatterns("/api/*");
 
