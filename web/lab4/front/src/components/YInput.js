@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Input from 'react-toolbox/lib/input/Input';
-import { selectY, setY } from "../features/formHandler.js/formSlice";
+import { selectY, setY } from "../features/formHandler/formSlice";
 
 let errorMessage="";
 
@@ -22,6 +22,9 @@ function YInput() {
 
 function isYCorrect(value) {
     console.log(value);
+
+    if (value == undefined)
+        return false;
 
     if (value === "") {
         errorMessage = "Поле не может быть пустым";
