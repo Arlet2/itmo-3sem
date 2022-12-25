@@ -34,7 +34,7 @@ const authSlice = createSlice({
         clearErrorMessage: (state) => {
             state.errorMessage = undefined;
         },
-        changeErrorMessage: (state, action) => {
+        setErrorMessage: (state, action) => {
             state.errorMessage = action.payload;
         },
         setRepeatedPassword: (state, action) => {
@@ -46,7 +46,7 @@ const authSlice = createSlice({
 
 export const {  setLogin, setPassword, clearPassword, 
                 changeToLogin, changeToRegister, switchIsLogin, 
-                clearErrorMessage, changeErrorMessage, setRepeatedPassword} = authSlice.actions;
+                clearErrorMessage, setErrorMessage, setRepeatedPassword} = authSlice.actions;
 
 export const selectLogin = (state) => state.auth.login;
 export const selectPassword = (state) => state.auth.password;
