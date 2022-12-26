@@ -37,7 +37,7 @@ function isYCorrect(value) {
     }
 
     if (value < -5) {
-        errorMessage = "Координата Y должна быть либо равна -5";
+        errorMessage = "Координата Y должна быть больше либо равна -5";
         return false;
     }
     if (value > 5) {
