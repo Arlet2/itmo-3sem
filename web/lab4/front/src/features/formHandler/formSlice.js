@@ -3,7 +3,8 @@ import {createSlice} from "@reduxjs/toolkit";
 const initialState = {
     x: undefined,
     y: undefined,
-    r: undefined
+    r: undefined,
+    formError: undefined
 };
 
 const formSlice = createSlice({
@@ -24,14 +25,18 @@ const formSlice = createSlice({
                 state.r = undefined;
             else
                 state.r = action.payload;
+        },
+        setFormError: (state, action) => {
+            state.formError = action.payload;
         }
     }
 });
 
-export const { setX, setY, setR } = formSlice.actions;
+export const { setX, setY, setR, setFormError } = formSlice.actions;
 
 export const selectX = (state) => state.formHandler.x;
 export const selectY = (state) => state.formHandler.y;
 export const selectR = (state) => state.formHandler.r;
+export const selectErrorMessage = (state) => state.formHandler.errorMessage;
 
 export default formSlice.reducer;
