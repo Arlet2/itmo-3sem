@@ -14,7 +14,7 @@ export async function validateToken() {
     if (Cookies.get("jwt-token") == undefined)
         return false;
     let isTokenCorrect = false;
-    await fetch("http://localhost:8080/api/token-validation?token=" + Cookies.get("jwt-token"))
+    await fetch("/api/token-validation?token=" + Cookies.get("jwt-token"))
         .then(
             async (result) => {
                 if (result.ok) {
