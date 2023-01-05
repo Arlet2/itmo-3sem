@@ -28,15 +28,18 @@ const formSlice = createSlice({
         },
         setFormError: (state, action) => {
             state.formError = action.payload;
+        },
+        clearFormError: (state) => {
+            state.formError = "";
         }
     }
 });
 
-export const { setX, setY, setR, setFormError } = formSlice.actions;
+export const { setX, setY, setR, setFormError, clearFormError } = formSlice.actions;
 
 export const selectX = (state) => state.formHandler.x;
 export const selectY = (state) => state.formHandler.y;
 export const selectR = (state) => state.formHandler.r;
-export const selectErrorMessage = (state) => state.formHandler.errorMessage;
+export const selectFormError = (state) => state.formHandler.formError;
 
 export default formSlice.reducer;
