@@ -27,7 +27,7 @@ public class SecureFilter extends GenericFilterBean {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
 
-        System.out.println("AUTH FILTER CALLED");
+        System.out.println("SECURE FILTER CALLED");
 
         var request = (HttpServletRequest) servletRequest;
         var response = (HttpServletResponse) servletResponse;
@@ -36,13 +36,15 @@ public class SecureFilter extends GenericFilterBean {
 
         if (jwt.isEmpty()) {
             System.out.println("No jwt request");
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Ошибка авторизации на сервере");
             return;
         }
 
         if(!authService.isJWTValid(jwt.get())) {
             System.out.println("Request with invalid jwt");
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Ошибка авторизации на сервере");
             return;
         }
 
