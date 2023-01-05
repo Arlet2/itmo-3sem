@@ -13,7 +13,7 @@ import Cookies from "js-cookie";
 import AuthField from "./AuthField";
 import { useDispatch, useSelector } from "react-redux";
 import {
-    clearErrorMessage, selectErrorMessage, selectIsLogin, selectLogin,
+    clearErrorMessage, clearPassword, selectErrorMessage, selectIsLogin, selectLogin,
     selectPassword, selectRepeatedPassword, setErrorMessage, switchIsLogin
 } from "../features/auth/authSlice";
 import { goToMain, returnBack, validateToken } from "../utils";
@@ -57,7 +57,7 @@ function Login() {
 
         clearErrorMessage();
 
-        fetch("http://localhost:8080/api/login", {
+        fetch("api/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ login: login, password: password })
@@ -69,10 +69,11 @@ function Login() {
                         result.text().then(
                             (text) => { Cookies.set("jwt-token", text); }
                         );
-
+                        dispatch(clearPassword());
                         returnBack();
                     }
                     else {
+                        dispatch(setErrorMessage("Ошибка с подключением к серверу"));
                         result.text().then(
                             (text) => { dispatch(setErrorMessage(JSON.parse(text).message)) }
                         );
@@ -91,7 +92,7 @@ function Login() {
 
         clearErrorMessage();
 
-        fetch("http://localhost:8080/api/register", {
+        fetch("api/register", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ login: login, password: password })
@@ -103,6 +104,8 @@ function Login() {
                         result.text().then(
                             (text) => { Cookies.set("jwt-token", text); }
                         );
+                        
+                        dispatch(clearPassword());
 
                         returnBack();
                     }
