@@ -29,11 +29,12 @@ public class PointsController {
     private final HitCheckService hitCheckService;
     private final PointsRepository pointsRepository;
 
-    public PointsController(@Autowired CookiesService cookiesService,
-                            @Autowired AuthService authService,
-                            @Autowired ValidationService validationService,
-                            @Autowired HitCheckService hitCheckService,
-                            @Autowired PointsRepository pointsRepository) {
+    @Autowired
+    public PointsController(CookiesService cookiesService,
+                            AuthService authService,
+                            ValidationService validationService,
+                            HitCheckService hitCheckService,
+                            PointsRepository pointsRepository) {
         this.cookiesService = cookiesService;
         this.authService = authService;
         this.validationService = validationService;

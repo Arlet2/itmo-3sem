@@ -1,4 +1,4 @@
-package com.arlet.lab4;
+package com.arlet.lab4.data;
 
 import lombok.Data;
 

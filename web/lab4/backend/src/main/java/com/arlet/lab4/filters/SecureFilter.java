@@ -18,7 +18,8 @@ public class SecureFilter extends GenericFilterBean {
     private final AuthService authService;
     private final CookiesService cookiesService;
 
-    public SecureFilter(@Autowired AuthService authService, @Autowired CookiesService cookiesService) {
+    @Autowired
+    public SecureFilter(AuthService authService, CookiesService cookiesService) {
         this.authService = authService;
         this.cookiesService = cookiesService;
     }
