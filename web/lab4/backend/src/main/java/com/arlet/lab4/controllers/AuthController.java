@@ -14,7 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 
 @RestController
-@RequestMapping(value="/api/")
+@RequestMapping(value = "/api/")
 public class AuthController {
 
     private final AuthService authService;
@@ -34,7 +34,7 @@ public class AuthController {
         }
     }
 
-    @RequestMapping(value="/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String tryToRegister(@RequestBody UserBody userBody) {
         try {
             return authService.register(userBody.login, userBody.password);
@@ -44,7 +44,7 @@ public class AuthController {
         }
     }
 
-    @RequestMapping(value="/token-validation", method = RequestMethod.GET)
+    @RequestMapping(value = "/token-validation", method = RequestMethod.GET)
     public boolean checkToken(@RequestParam String token) {
         return authService.isJWTValid(token);
     }

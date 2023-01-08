@@ -18,20 +18,18 @@ public class AuthService {
 
     private final PasswordHashCreator passwordHashCreator;
 
-    private final String secretKey;
 
     private final Algorithm algorithm;
 
     public AuthService(@Autowired UserRepository userRepository, @Autowired PasswordHashCreator passwordHashCreator,
-                       @Value("${jwt_secret_key}")String secretKey) {
+                       @Value("${jwt_secret_key}") String secretKey) {
         this.userRepository = userRepository;
         this.passwordHashCreator = passwordHashCreator;
-        this.secretKey = secretKey;
         algorithm = Algorithm.HMAC256(secretKey);
     }
 
     public String login(String login, String password) {
-        if(!userRepository.existsUserByLogin(login))
+        if (!userRepository.existsUserByLogin(login))
             throw new AuthException("Логина не существует");
 
         User currentUser = userRepository.getUserByLogin(login);

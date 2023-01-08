@@ -20,7 +20,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
-@RequestMapping(value="/api/secure")
+@RequestMapping(value = "/api/secure")
 public class PointsController {
 
     private final CookiesService cookiesService;
@@ -28,6 +28,7 @@ public class PointsController {
     private final ValidationService validationService;
     private final HitCheckService hitCheckService;
     private final PointsRepository pointsRepository;
+
     public PointsController(@Autowired CookiesService cookiesService,
                             @Autowired AuthService authService,
                             @Autowired ValidationService validationService,
@@ -40,7 +41,7 @@ public class PointsController {
         this.pointsRepository = pointsRepository;
     }
 
-    @RequestMapping(value="/add-point", consumes = "application/json", method = RequestMethod.POST)
+    @RequestMapping(value = "/add-point", consumes = "application/json", method = RequestMethod.POST)
     public Point addPoint(@RequestBody PointBody pointBody, HttpServletRequest request) {
 
         String jwt = cookiesService.getJWTFromCookie(request).get(); // фильтр гарантирует существование jwt
@@ -48,10 +49,10 @@ public class PointsController {
         long startTime = System.nanoTime();
         var point = new Point();
 
-        if(validationService.validateInputData(pointBody.x, pointBody.y, pointBody.r))
+        if (validationService.validateInputData(pointBody.x, pointBody.y, pointBody.r))
             point.setStatus(
-                    hitCheckService.checkCoordinates(pointBody.x, pointBody.y, pointBody.r)?
-                    "correct":"incorrect");
+                    hitCheckService.checkCoordinates(pointBody.x, pointBody.y, pointBody.r) ?
+                            "correct" : "incorrect");
         else
             point.setStatus("error");
 
@@ -61,9 +62,9 @@ public class PointsController {
 
         point.setDate(ZonedDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss - VV O")));
 
-        long finalTime = System.nanoTime()-startTime;
+        long finalTime = System.nanoTime() - startTime;
 
-        point.setScriptTime(new DecimalFormat("#0.00").format(finalTime*Math.pow(10, -6))+" мс");
+        point.setScriptTime(new DecimalFormat("#0.00").format(finalTime * Math.pow(10, -6)) + " мс");
 
         point.setOwner(authService.decodeJWT(jwt).getClaim("login").asString());
 

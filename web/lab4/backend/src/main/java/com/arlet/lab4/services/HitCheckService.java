@@ -21,15 +21,15 @@ public class HitCheckService {
     }
 
     private boolean checkAxes(int x, float y, int r) {
-        return -r <= x && x <= r/2 && -r/2f <= y && y <= r;
+        return -r <= x && x <= r / 2 && -r / 2f <= y && y <= r;
     }
 
     private boolean checkFirstQuarter(int x, float y, int r) {
-        return 0 < x && x <= r/2 && 0 < y && y <= r;
+        return 0 < x && x <= r / 2 && 0 < y && y <= r;
     }
 
     private boolean checkSecondQuarter(int x, float y, int r) {
-        return y <= r/2f + -x/2f;
+        return y <= r / 2f + -x / 2f;
     }
 
     private boolean checkThirdQuarter(int x, float y, int r) {
@@ -37,6 +37,6 @@ public class HitCheckService {
     }
 
     private boolean checkFourthQuarter(int x, float y, int r) {
-        return r*r/4f <= x*x + y*y;
+        return r * r / 4f <= x * x + y * y;
     }
 }

@@ -3,10 +3,9 @@ package com.arlet.lab4.data;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
-@Table(name="points4")
+@Table(name = "points4")
 
 @AllArgsConstructor
 @NoArgsConstructor

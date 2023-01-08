@@ -41,7 +41,7 @@ public class SecureFilter extends GenericFilterBean {
             return;
         }
 
-        if(!authService.isJWTValid(jwt.get())) {
+        if (!authService.isJWTValid(jwt.get())) {
             System.out.println("Request with invalid jwt");
 
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Ошибка авторизации на сервере");
