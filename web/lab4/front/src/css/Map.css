@@ -1,7 +1,10 @@
 .Map {
     text-align: center;
+    margin-left: auto;
+    margin-right: 0%;
 }
 
 canvas.map {
     position: absolute;
+    border: 1px solid;
 }
