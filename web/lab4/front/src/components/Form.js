@@ -32,7 +32,7 @@ function Form() {
                     if (result.ok) {
 
                         result.text().then(
-                            (text) => { console.log(JSON.parse(text)); dispatch(setRows(JSON.parse(text))); }
+                            (text) => { dispatch(setRows(JSON.parse(text))); }
                         );
                     }
                     else {

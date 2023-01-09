@@ -7,8 +7,6 @@ import "../css/DataTable.css";
 function DataTable () {
     const rows = useSelector(selectRows);
 
-    console.log(new Date().getMonth()+1);
-
     return (
         <table>
             <thead>
@@ -30,7 +28,7 @@ function DataTable () {
                             <td>{value.y}</td>
                             <td>{value.r}</td>
                             <td>{value.status}</td>
-                            <td>{value.scriptTime} мс</td>
+                            <td>{(""+value.scriptTime).replace(".", ",")} мс</td>
                         </tr>
                     );
                 })}

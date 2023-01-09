@@ -16,7 +16,6 @@ function Main() {
 	validateToken()
 		.then((result) => {
 			if (!result) {
-				console.log(123);
 				Cookies.remove("jwt-token");
 				goToLogin();
 			}
