@@ -3,6 +3,7 @@ package com.arlet.lab4.data;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.ZonedDateTime;
 
 @Entity
 @Table(name = "points4")
@@ -19,7 +20,7 @@ public class Point {
     private float y;
     private int r;
     private String status;
-    private String date;
+    private ZonedDateTime date;
     private float scriptTime;
     private String owner;
 }

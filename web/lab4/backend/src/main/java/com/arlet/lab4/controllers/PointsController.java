@@ -18,6 +18,7 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -64,7 +65,7 @@ public class PointsController {
         point.setY(pointBody.y);
         point.setR(pointBody.r);
 
-        point.setDate(ZonedDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss - VV O")));
+        point.setDate(ZonedDateTime.now());
 
         long finalTime = System.nanoTime() - startTime;
 
