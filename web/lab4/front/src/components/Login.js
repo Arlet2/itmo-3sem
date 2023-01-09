@@ -71,7 +71,6 @@ function Login() {
                         result.text().then(
                             (text) => { Cookies.set("jwt-token", text); }
                         );
-                        dispatch(clearPassword());
                         returnBack();
                     }
                     else {
@@ -108,8 +107,6 @@ function Login() {
                         result.text().then(
                             (text) => { Cookies.set("jwt-token", text); }
                         );
-                        
-                        dispatch(clearPassword());
 
                         returnBack();
                     }
