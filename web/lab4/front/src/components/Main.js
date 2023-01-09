@@ -28,10 +28,10 @@ function Main() {
 				<Header />
 				<Form />
 				<DataTable />
-				
+				<Map />
 			</div>
 		</ThemeProvider>
-	); // <Map />
+	); 
 }
 
 export default Main;
