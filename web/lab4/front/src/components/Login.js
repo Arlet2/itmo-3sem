@@ -13,12 +13,13 @@ import Cookies from "js-cookie";
 import AuthField from "./AuthField";
 import { useDispatch, useSelector } from "react-redux";
 import {
-    clearErrorMessage, clearPassword, selectErrorMessage, selectIsLogin, selectLogin,
+    clearErrorMessage, selectErrorMessage, selectIsLogin, selectLogin,
     selectPassword, selectRepeatedPassword, setErrorMessage, switchIsLogin
 } from "../features/auth/authSlice";
 import { goToMain, returnBack, validateToken } from "../utils";
-import Header from "./Header";
 import AppBar from "react-toolbox/lib/app_bar/AppBar";
+
+import "../css/Login.css";
 
 function Login() {
     checkToken();
@@ -132,10 +133,10 @@ function Login() {
 
     return (
         <ThemeProvider theme={theme}>
-            <div>
+            <div className="Login">
                 <AppBar title="Выполнил Шульга Артём P32111. Вариант: 1139"/>
-                <Card>
-                    <CardTitle>Authorization</CardTitle>
+                <Card className="authPanel">
+                    <CardTitle className="cardTitle">Authorization</CardTitle>
                     <CardText>
                         <AuthField />
                     </CardText>
@@ -143,7 +144,7 @@ function Login() {
                         <Button label={buttonInfo.name} onClick={() => buttonInfo.action()} />
                         <Button label={switchButtonInfo} onClick={() => dispatch(switchIsLogin())} />
                     </CardActions>
-                    <p>{errorMessage}</p>
+                    <p className="errorMessage">{errorMessage}</p>
                 </Card>
             </div>
         </ThemeProvider>
