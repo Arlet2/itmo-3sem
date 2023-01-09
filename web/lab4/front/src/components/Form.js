@@ -7,6 +7,8 @@ import YInput from './YInput';
 import Button from 'react-toolbox/lib/button/Button';
 import { selectX, selectY, selectR, selectFormError, setFormError, clearFormError } from '../features/formHandler/formSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { addRow, setRows } from '../features/tableHandler/tableSlice';
+import { setErrorMessage } from '../features/auth/authSlice';
 
 
 function Form() {
@@ -17,6 +19,32 @@ function Form() {
     const formError = useSelector(selectFormError);
 
     const dispatch = useDispatch();
+
+    const getAllPoints = () => {
+        fetch("api/secure/points", {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        })
+            .then(
+                (result) => {
+                    if (result.ok) {
+
+                        result.text().then(
+                            (text) => { console.log(JSON.parse(text)); dispatch(setRows(JSON.parse(text))); }
+                        );
+                    }
+                    else {
+                        if (result.status === 504)
+                            dispatch(setErrorMessage("Сервер недоступен"));
+                        else
+                            result.text().then(
+                                (text) => { dispatch(setErrorMessage(JSON.parse(text).message)) }
+                            );
+                    }
+                });
+    };
+
+    getAllPoints();
 
     const isCoordinatesCorrect = () => {
         if (x == undefined) {
@@ -74,10 +102,7 @@ function Form() {
             .then(
                 (result) => {
                     if (result.ok) {
-
-                        result.text().then(
-                            (text) => { console.log(text) }
-                        );
+                        getAllPoints();
                     }
                     else {
                         result.text().then(
