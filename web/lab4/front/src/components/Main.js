@@ -10,6 +10,7 @@ import Header from './Header';
 import Map from './Map';
 import Cookies from 'js-cookie';
 import { goToLogin, validateToken } from '../utils';
+import DataTable from './DataTable';
 
 function Main() {
 	validateToken()
@@ -26,10 +27,11 @@ function Main() {
 			<div className="Main">
 				<Header />
 				<Form />
-				<Map />
+				<DataTable />
+				
 			</div>
 		</ThemeProvider>
-	);
+	); // <Map />
 }
 
 export default Main;

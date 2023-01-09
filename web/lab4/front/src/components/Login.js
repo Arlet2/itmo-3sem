@@ -73,10 +73,12 @@ function Login() {
                         returnBack();
                     }
                     else {
-                        dispatch(setErrorMessage("Ошибка с подключением к серверу"));
-                        result.text().then(
-                            (text) => { dispatch(setErrorMessage(JSON.parse(text).message)) }
-                        );
+                        if (result.status === 504)
+                            dispatch(setErrorMessage("Сервер недоступен"));
+                        else
+                            result.text().then(
+                                (text) => { dispatch(setErrorMessage(JSON.parse(text).message)) }
+                            );
                     }
                 });
     };
@@ -110,9 +112,12 @@ function Login() {
                         returnBack();
                     }
                     else {
-                        result.text().then(
-                            (text) => { dispatch(setErrorMessage(JSON.parse(text).message)) }
-                        );
+                        if (result.status === 504)
+                            dispatch(setErrorMessage("Сервер недоступен"));
+                        else
+                            result.text().then(
+                                (text) => { dispatch(setErrorMessage(JSON.parse(text).message)) }
+                            );
                     }
                 });
     };
