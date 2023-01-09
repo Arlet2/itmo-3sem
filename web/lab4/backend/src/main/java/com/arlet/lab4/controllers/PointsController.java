@@ -11,7 +11,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
@@ -44,7 +46,7 @@ public class PointsController {
     }
 
     @RequestMapping(value = "/add-point", consumes = "application/json", method = RequestMethod.POST)
-    public Point addPoint(@RequestBody PointBody pointBody, HttpServletRequest request) {
+    public void addPoint(@RequestBody PointBody pointBody, HttpServletRequest request) {
 
         String jwt = cookiesService.getJWTFromCookie(request).get(); // фильтр гарантирует существование jwt
 
@@ -76,10 +78,9 @@ public class PointsController {
 
         try {
             pointsDAO.save(point);
-            return point;
         } catch (RuntimeException e) {
             e.printStackTrace();
-            return null;
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Ошибка базы данных на сервере");
         }
     }
 
