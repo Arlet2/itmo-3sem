@@ -2,10 +2,12 @@ import React from "react";
 import { selectRows } from "../features/tableHandler/tableSlice";
 import { useSelector } from "react-redux";
 
+import "../css/DataTable.css";
+
 function DataTable () {
     const rows = useSelector(selectRows);
 
-    console.log(rows);
+    console.log(new Date().getMonth()+1);
 
     return (
         <table>
@@ -23,7 +25,7 @@ function DataTable () {
                 {rows.map((value) => {
                     return (
                         <tr>
-                            <td>{value.date/*getDateString(value.date)*/}</td>
+                            <td>{getDateString(new Date(value.date))}</td>
                             <td>{value.x}</td>
                             <td>{value.y}</td>
                             <td>{value.r}</td>
@@ -38,8 +40,31 @@ function DataTable () {
 }
 
 function getDateString(date) {
-    return date.getDate() + "." + date.getMonth() + "." + date.getFullYear() + " - " + 
-    date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + "::" + date.getMilliseconds();
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let seconds = date.getSeconds();
+    let milliseconds = date.getMilliseconds();
+
+    day = addUpToTwoDigits(day);
+    month = addUpToTwoDigits(month);
+
+    hours = addUpToTwoDigits(hours);
+    minutes = addUpToTwoDigits(minutes);
+    seconds = addUpToTwoDigits(seconds);
+
+
+    return day + "." + month + "." + year + " - " + 
+    hours + ":" + minutes + ":" + seconds + "." + milliseconds;
+}
+
+function addUpToTwoDigits(value) {
+    if (value < 10)
+        return "0"+value;
+    return value;
 }
 
 export default DataTable;
