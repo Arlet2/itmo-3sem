@@ -55,7 +55,7 @@ public class PointsController {
         if (validationService.validateInputData(pointBody.x, pointBody.y, pointBody.r))
             point.setStatus(
                     hitCheckService.checkCoordinates(pointBody.x, pointBody.y, pointBody.r) ?
-                            "correct" : "incorrect");
+                            "hit" : "no hit");
         else
             point.setStatus("error");
 
