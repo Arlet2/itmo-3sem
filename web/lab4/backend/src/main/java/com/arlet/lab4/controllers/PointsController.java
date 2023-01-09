@@ -1,7 +1,7 @@
 package com.arlet.lab4.controllers;
 
 import com.arlet.lab4.data.Point;
-import com.arlet.lab4.repositories.PointsRepository;
+import com.arlet.lab4.repositories.PointsDAO;
 import com.arlet.lab4.services.AuthService;
 import com.arlet.lab4.services.CookiesService;
 import com.arlet.lab4.services.HitCheckService;
@@ -27,19 +27,19 @@ public class PointsController {
     private final AuthService authService;
     private final ValidationService validationService;
     private final HitCheckService hitCheckService;
-    private final PointsRepository pointsRepository;
+    private final PointsDAO pointsDAO;
 
     @Autowired
     public PointsController(CookiesService cookiesService,
                             AuthService authService,
                             ValidationService validationService,
                             HitCheckService hitCheckService,
-                            PointsRepository pointsRepository) {
+                            PointsDAO pointsDAO) {
         this.cookiesService = cookiesService;
         this.authService = authService;
         this.validationService = validationService;
         this.hitCheckService = hitCheckService;
-        this.pointsRepository = pointsRepository;
+        this.pointsDAO = pointsDAO;
     }
 
     @RequestMapping(value = "/add-point", consumes = "application/json", method = RequestMethod.POST)
@@ -70,7 +70,7 @@ public class PointsController {
         point.setOwner(authService.decodeJWT(jwt).getClaim("login").asString());
 
         try {
-            pointsRepository.save(point);
+            pointsDAO.save(point);
             return point;
         } catch (RuntimeException e) {
             e.printStackTrace();
@@ -83,7 +83,7 @@ public class PointsController {
 
         String jwt = cookiesService.getJWTFromCookie(request).get(); // фильтр гарантирует существование jwt
 
-        return pointsRepository.findAllByOwner(authService.decodeJWT(jwt).getClaim("login").asString());
+        return pointsDAO.findAllByOwner(authService.decodeJWT(jwt).getClaim("login").asString());
     }
 
     @Getter
