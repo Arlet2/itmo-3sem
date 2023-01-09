@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -65,7 +67,11 @@ public class PointsController {
 
         long finalTime = System.nanoTime() - startTime;
 
-        point.setScriptTime(new DecimalFormat("#0.00").format(finalTime * Math.pow(10, -6)) + " мс");
+        float scriptTime = new BigDecimal(finalTime * Math.pow(10, -6))
+                                .setScale(2, RoundingMode.HALF_UP)
+                                .floatValue();
+
+        point.setScriptTime(scriptTime);
 
         point.setOwner(authService.decodeJWT(jwt).getClaim("login").asString());
 

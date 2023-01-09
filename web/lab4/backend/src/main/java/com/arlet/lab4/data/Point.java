@@ -20,6 +20,6 @@ public class Point {
     private int r;
     private String status;
     private String date;
-    private String scriptTime;
+    private float scriptTime;
     private String owner;
 }
