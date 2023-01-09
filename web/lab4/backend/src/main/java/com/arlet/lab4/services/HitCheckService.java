@@ -37,6 +37,6 @@ public class HitCheckService {
     }
 
     private boolean checkFourthQuarter(int x, float y, int r) {
-        return r * r / 4f <= x * x + y * y;
+        return r * r / 4f >= x * x + y * y;
     }
 }
