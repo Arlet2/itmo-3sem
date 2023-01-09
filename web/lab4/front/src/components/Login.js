@@ -17,6 +17,8 @@ import {
     selectPassword, selectRepeatedPassword, setErrorMessage, switchIsLogin
 } from "../features/auth/authSlice";
 import { goToMain, returnBack, validateToken } from "../utils";
+import Header from "./Header";
+import AppBar from "react-toolbox/lib/app_bar/AppBar";
 
 function Login() {
     checkToken();
@@ -134,6 +136,7 @@ function Login() {
     return (
         <ThemeProvider theme={theme}>
             <div>
+                <AppBar title="Выполнил Шульга Артём P32111. Вариант: 1139"/>
                 <Card>
                     <CardTitle>Authorization</CardTitle>
                     <CardText>
