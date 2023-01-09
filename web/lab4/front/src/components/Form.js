@@ -4,10 +4,12 @@ import XCheckboxes from './XCheckboxes';
 import RCheckboxes from './RCheckboxes';
 import YInput from './YInput';
 
+import "../css/Form.css";
+
 import Button from 'react-toolbox/lib/button/Button';
 import { selectX, selectY, selectR, selectFormError, setFormError, clearFormError } from '../features/formHandler/formSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { addRow, setRows } from '../features/tableHandler/tableSlice';
+import { setRows } from '../features/tableHandler/tableSlice';
 import { setErrorMessage } from '../features/auth/authSlice';
 
 

@@ -1,0 +1,7 @@
+.Map {
+    text-align: center;
+}
+
+canvas.map {
+    position: absolute;
+}
