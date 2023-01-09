@@ -8,32 +8,34 @@ function DataTable () {
     const rows = useSelector(selectRows);
 
     return (
-        <table>
-            <thead>
-                <tr>
-                    <td>Date</td>
-                    <td>x</td>
-                    <td>y</td>
-                    <td>r</td>
-                    <td>Status</td>
-                    <td>Script time</td>
-                </tr>
-            </thead>
-            <tbody>
-                {rows.map((value) => {
-                    return (
-                        <tr>
-                            <td>{getDateString(new Date(value.date))}</td>
-                            <td>{value.x}</td>
-                            <td>{value.y}</td>
-                            <td>{value.r}</td>
-                            <td>{value.status}</td>
-                            <td>{(""+value.scriptTime).replace(".", ",")} мс</td>
-                        </tr>
-                    );
-                })}
-            </tbody>
-        </table>
+        <div className="DataTable">
+            <table>
+                <thead>
+                    <tr>
+                        <td>Date</td>
+                        <td>x</td>
+                        <td>y</td>
+                        <td>r</td>
+                        <td>Status</td>
+                        <td>Script time</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {rows.map((value) => {
+                        return (
+                            <tr>
+                                <td>{getDateString(new Date(value.date))}</td>
+                                <td>{value.x}</td>
+                                <td>{value.y}</td>
+                                <td>{value.r}</td>
+                                <td>{value.status}</td>
+                                <td>{(""+value.scriptTime).replace(".", ",")} мс</td>
+                            </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
+        </div>
     );
 }
 

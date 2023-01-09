@@ -7,10 +7,9 @@ import YInput from './YInput';
 import "../css/Form.css";
 
 import Button from 'react-toolbox/lib/button/Button';
-import { selectX, selectY, selectR, selectFormError, setFormError, clearFormError } from '../features/formHandler/formSlice';
+import { selectX, selectY, selectR, selectFormError, setFormError } from '../features/formHandler/formSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { setRows } from '../features/tableHandler/tableSlice';
-import { setErrorMessage } from '../features/auth/authSlice';
+import { getAllPoints, sendCoordinates } from '../utils';
 
 
 function Form() {
@@ -22,31 +21,7 @@ function Form() {
 
     const dispatch = useDispatch();
 
-    const getAllPoints = () => {
-        fetch("api/secure/points", {
-            method: "GET",
-            headers: { "Content-Type": "application/json" }
-        })
-            .then(
-                (result) => {
-                    if (result.ok) {
-
-                        result.text().then(
-                            (text) => { dispatch(setRows(JSON.parse(text))); }
-                        );
-                    }
-                    else {
-                        if (result.status === 504)
-                            dispatch(setErrorMessage("Сервер недоступен"));
-                        else
-                            result.text().then(
-                                (text) => { dispatch(setErrorMessage(JSON.parse(text).message)) }
-                            );
-                    }
-                });
-    };
-
-    getAllPoints();
+    getAllPoints(dispatch);
 
     const isCoordinatesCorrect = () => {
         if (x == undefined) {
@@ -91,35 +66,18 @@ function Form() {
         return true;
     }
 
-    const sendCoordinates = () => {
+    const sendCoordinatesByForm = () => {
         if (!isCoordinatesCorrect())
             return;
-        dispatch(clearFormError());
-
-        fetch("/api/secure/add-point", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ x: x, y: y, r: r })
-        })
-            .then(
-                (result) => {
-                    if (result.ok) {
-                        getAllPoints();
-                    }
-                    else {
-                        result.text().then(
-                            (text) => { dispatch(setFormError(JSON.parse(text).message)) }
-                        );
-                    }
-                });
-    };
+        sendCoordinates(dispatch, x, y, r);
+    }
 
     return (
         <div>
             <XCheckboxes />
             <YInput />
             <RCheckboxes />
-            <Button type="submit" label="Send" onClick={sendCoordinates} raised />
+            <Button type="submit" label="Send" onClick={sendCoordinatesByForm} raised />
             <p>{formError}</p>
         </div>
     );
